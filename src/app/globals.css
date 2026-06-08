@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand: CheckMed teal (health, safety, trust) ---- */
+  --color-brand-50: #ecfdf7;
+  --color-brand-100: #d1faec;
+  --color-brand-200: #a7f3da;
+  --color-brand-300: #6ee7c0;
+  --color-brand-400: #34d3a3;
+  --color-brand-500: #10b886;
+  --color-brand-600: #06966c;
+  --color-brand-700: #057857;
+  --color-brand-800: #075f47;
+  --color-brand-900: #064e3b;
+  --color-brand-950: #022c22;
+
+  /* ---- Accent: deep sea / clinical ink ---- */
+  --color-ink-50: #f3f7f9;
+  --color-ink-100: #e2ecf0;
+  --color-ink-200: #c7dae1;
+  --color-ink-300: #9bbecb;
+  --color-ink-400: #689aae;
+  --color-ink-500: #4a7d93;
+  --color-ink-600: #3f667c;
+  --color-ink-700: #385566;
+  --color-ink-800: #344856;
+  --color-ink-900: #0c2b34;
+  --color-ink-950: #061a20;
+
+  /* ---- Highlight: warm coral for "alerts / care" ---- */
+  --color-coral-400: #ff8a73;
+  --color-coral-500: #ff6a4d;
+  --color-coral-600: #ed4d2d;
+
+  /* ---- Fonts ---- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-inter), ui-sans-serif, sans-serif;
+
+  /* ---- Animations ---- */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(0.92); opacity: 0.7; }
+    70% { transform: scale(1.25); opacity: 0; }
+    100% { transform: scale(1.25); opacity: 0; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+  }
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-ink-950);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(120deg, var(--color-brand-600), var(--color-brand-400) 60%, var(--color-ink-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(6, 150, 108, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 150, 108, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .bg-radial-glow {
+    background: radial-gradient(60% 60% at 50% 0%, rgba(16, 184, 134, 0.16), transparent 70%);
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  /* Reveal-on-scroll. The hidden state is applied ONLY once the inline head
+     script adds `.reveal-on` to <html> (before first paint). Without JS the
+     class is never added, so all content stays fully visible — progressive
+     enhancement, never a blank page. */
+  .reveal {
+    will-change: opacity, transform;
+  }
+  .reveal-on .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-on .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-on .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-on .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-on .reveal-delay-3 { transition-delay: 0.24s; }
+  .reveal-on .reveal-delay-4 { transition-delay: 0.32s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal-on .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
