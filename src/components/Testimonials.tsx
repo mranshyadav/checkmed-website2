@@ -40,7 +40,7 @@ export default function Testimonials() {
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {quotes.map((q, i) => (
             <Reveal key={q.name} delay={((i + 1) as 1 | 2 | 3)}>
-              <figure className="flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-8 shadow-sm">
+              <figure className="flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-8">
                 <Quote className="h-9 w-9 text-brand-200" />
                 <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-ink-700">
                   &ldquo;{q.body}&rdquo;

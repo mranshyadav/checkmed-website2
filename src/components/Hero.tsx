@@ -65,7 +65,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/25 transition-all hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-xl hover:shadow-brand-600/30"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/25"
               >
                 Book a demo
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
@@ -101,7 +101,7 @@ export default function Hero() {
 
             {/* Main card */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-[78%] rounded-[2rem] border border-white/70 bg-white/80 p-6 shadow-2xl shadow-ink-900/10 backdrop-blur-xl">
+              <div className="relative w-[78%] rounded-[2rem] border border-white/70 bg-white/80 p-6 backdrop-blur-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold uppercase tracking-wider text-ink-400">
                     Workforce health
@@ -112,7 +112,7 @@ export default function Hero() {
                 </div>
 
                 <div className="mt-5 flex flex-col items-center text-center">
-                  <div className="relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-lg shadow-brand-600/30">
+                  <div className="relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white">
                     <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-brand-400/60" />
                     <ShieldHeart className="h-11 w-11" />
                   </div>
@@ -152,7 +152,7 @@ export default function Hero() {
               return (
                 <div
                   key={chip.label}
-                  className={`absolute ${chip.className} ${chip.anim} hidden items-center gap-2 rounded-2xl border border-white/70 bg-white/90 px-3.5 py-2.5 shadow-xl shadow-ink-900/10 backdrop-blur-md sm:flex`}
+                  className={`absolute ${chip.className} ${chip.anim} hidden items-center gap-2 rounded-2xl border border-white/70 bg-white/90 px-3.5 py-2.5 backdrop-blur-md sm:flex`}
                 >
                   <span className="grid h-8 w-8 place-items-center rounded-xl bg-brand-50 text-brand-600">
                     <Icon className="h-4.5 w-4.5" />

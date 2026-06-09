@@ -29,7 +29,7 @@ export default function EcosystemStrip() {
             return (
               <div
                 key={`${p.label}-${i}`}
-                className="flex shrink-0 items-center gap-2.5 rounded-full border border-ink-100 bg-white px-5 py-2.5 shadow-sm"
+                className="flex shrink-0 items-center gap-2.5 rounded-full border border-ink-100 bg-white px-5 py-2.5"
               >
                 <Icon className="h-5 w-5 text-brand-600" />
                 <span className="whitespace-nowrap text-sm font-semibold text-ink-700">{p.label}</span>

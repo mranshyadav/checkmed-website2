@@ -68,7 +68,7 @@ export default function ContactCTA() {
 
           {/* Right: form card */}
           <div className="relative">
-            <div className="rounded-3xl border border-ink-100 bg-white p-7 shadow-xl shadow-ink-900/5 sm:p-9">
+            <div className="rounded-3xl border border-ink-100 bg-white p-7 sm:p-9">
               {sent ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
                   <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-100 text-brand-700">
@@ -125,7 +125,7 @@ export default function ContactCTA() {
                   </Field>
                   <button
                     type="submit"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/25 transition-all hover:bg-brand-700 hover:shadow-xl"
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/25"
                   >
                     Request my demo
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />

@@ -33,7 +33,7 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-ink-100/70 glass shadow-[0_8px_30px_-12px_rgba(6,43,52,0.12)]"
+          ? "border-b border-ink-100/70 glass"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -66,7 +66,7 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-600/25"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-700/25"
           >
             Book a demo
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

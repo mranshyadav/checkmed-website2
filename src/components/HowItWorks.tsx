@@ -54,7 +54,7 @@ export default function HowItWorks() {
               const Icon = s.icon;
               return (
                 <Reveal key={s.step} delay={((i + 1) as 1 | 2 | 3 | 4)} className="relative">
-                  <div className="relative z-10 mx-auto grid h-[4.8rem] w-[4.8rem] place-items-center rounded-2xl border border-brand-100 bg-white text-brand-600 shadow-md shadow-brand-600/10 lg:mx-0">
+                  <div className="relative z-10 mx-auto grid h-[4.8rem] w-[4.8rem] place-items-center rounded-2xl border border-brand-100 bg-white text-brand-600 lg:mx-0">
                     <Icon className="h-7 w-7" />
                     <span className="absolute -right-2 -top-2 grid h-7 w-7 place-items-center rounded-full bg-ink-900 font-display text-[11px] font-bold text-white">
                       {s.step}

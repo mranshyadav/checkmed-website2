@@ -254,8 +254,8 @@ export function CheckMedLogo(props: IconProps) {
       <path d="M16 7.5v3M14.5 9h3" stroke="white" strokeWidth="2.2" strokeLinecap="round" opacity="0.85" />
       <defs>
         <linearGradient id="cm-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#10b886" />
-          <stop offset="1" stopColor="#057857" />
+          <stop stopColor="#00bcbc" />
+          <stop offset="1" stopColor="#0a7173" />
         </linearGradient>
       </defs>
     </svg>

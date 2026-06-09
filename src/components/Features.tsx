@@ -30,7 +30,7 @@ export default function Features() {
         <div className="mt-14 grid auto-rows-[minmax(0,1fr)] gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {/* Featured: Teleconsultation */}
           <Reveal className="sm:col-span-2 lg:col-span-2">
-            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-700 to-ink-900 p-8 text-white shadow-lg sm:p-10">
+            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-700 to-ink-900 p-8 text-white sm:p-10">
               <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
               <div className="relative">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-100">
@@ -81,10 +81,10 @@ export default function Features() {
 
           {/* Featured: Preventive wellness */}
           <Reveal className="sm:col-span-2 lg:col-span-2">
-            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-brand-100 bg-brand-50/60 p-8 shadow-sm sm:p-10">
+            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-brand-100 bg-brand-50/60 p-8 sm:p-10">
               <div className="pointer-events-none absolute -bottom-12 -right-8 h-44 w-44 rounded-full bg-brand-200/50 blur-2xl" />
               <div className="relative flex items-start gap-4">
-                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white text-brand-600 shadow-sm">
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white text-brand-600">
                   <HeartPulse className="h-7 w-7" />
                 </span>
                 <div>
@@ -104,7 +104,7 @@ export default function Features() {
                   { k: "Screenings", v: "Seasonal" },
                   { k: "Coaching", v: "1-on-1" },
                 ].map((s) => (
-                  <div key={s.k} className="rounded-xl bg-white/80 px-3 py-2.5 text-center shadow-sm">
+                  <div key={s.k} className="rounded-xl bg-white/80 px-3 py-2.5 text-center">
                     <p className="font-display text-sm font-bold text-brand-700">{s.v}</p>
                     <p className="text-[11px] font-medium text-ink-500">{s.k}</p>
                   </div>
@@ -150,7 +150,7 @@ function FeatureCard({
 }) {
   return (
     <Reveal>
-      <div className="group flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-7 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/5">
+      <div className="group flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/5">
         <span className="grid h-13 w-13 place-items-center rounded-2xl bg-brand-50 p-3 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
           <Icon className="h-6 w-6" />
         </span>
