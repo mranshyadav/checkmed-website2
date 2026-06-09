@@ -65,7 +65,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/25"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800"
               >
                 Book a demo
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />

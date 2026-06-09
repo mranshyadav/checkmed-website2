@@ -125,7 +125,7 @@ export default function ContactCTA() {
                   </Field>
                   <button
                     type="submit"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-800 hover:shadow-xl hover:shadow-brand-700/25"
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-800"
                   >
                     Request my demo
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />

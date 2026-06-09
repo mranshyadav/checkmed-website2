@@ -4,23 +4,14 @@ import { useEffect, useState } from "react";
 import { CheckMedLogo, Menu, Close, ArrowRight } from "@/lib/icons";
 
 const links = [
-  { label: "The Problem", href: "#problem" },
-  { label: "How it works", href: "#how" },
   { label: "Services", href: "#services" },
   { label: "Solutions", href: "#solutions" },
-  { label: "Outcomes", href: "#outcomes" },
+  { label: "Partners", href: "#partners" },
+  { label: "Clients", href: "#clients" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -30,13 +21,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-ink-100/70 glass"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink-100 bg-white">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[72px]">
         <a href="#top" className="flex items-center gap-2.5" aria-label="CheckMed home">
           <CheckMedLogo className="h-9 w-9" />
@@ -66,7 +51,7 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-700/25"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             Book a demo
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

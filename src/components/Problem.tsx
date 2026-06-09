@@ -57,7 +57,7 @@ export default function Problem() {
             const Icon = c.icon;
             return (
               <Reveal key={c.title} delay={((i + 1) as 1 | 2 | 3)}>
-                <div className="group h-full rounded-2xl border border-ink-100 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/5">
+                <div className="group h-full rounded-2xl border border-ink-100 bg-white p-7 transition-all hover:-translate-y-1 hover:border-brand-200">
                   <span className="grid h-12 w-12 place-items-center rounded-xl bg-coral-500/10 text-coral-600 transition-colors group-hover:bg-coral-500 group-hover:text-white">
                     <Icon className="h-6 w-6" />
                   </span>

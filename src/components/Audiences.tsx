@@ -68,7 +68,7 @@ export default function Audiences() {
             const Icon = a.icon;
             return (
               <Reveal key={a.label} delay={(((i % 2) + 1) as 1 | 2)}>
-                <div className="group h-full rounded-3xl border border-ink-100 bg-white p-8 transition-all hover:border-brand-200 hover:shadow-xl hover:shadow-ink-900/5 sm:p-9">
+                <div className="group h-full rounded-3xl border border-ink-100 bg-white p-8 transition-all hover:border-brand-200 sm:p-9">
                   <div className="flex items-center gap-4">
                     <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
                       <Icon className="h-7 w-7" />

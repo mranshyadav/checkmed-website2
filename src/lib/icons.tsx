@@ -240,6 +240,14 @@ export function Quote(props: IconProps) {
   );
 }
 
+export function Star(props: IconProps) {
+  return (
+    <svg {...props} viewBox="0 0 24 24" fill="currentColor" width={20} height={20}>
+      <path d="M12 2.6l2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.56l-5.7 3 1.09-6.35-4.62-4.5 6.38-.93z" />
+    </svg>
+  );
+}
+
 export function CheckMedLogo(props: IconProps) {
   return (
     <svg {...props} viewBox="0 0 32 32" fill="none">
