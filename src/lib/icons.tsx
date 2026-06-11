@@ -256,6 +256,64 @@ export function Star(props: IconProps) {
   );
 }
 
+export function FileText(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M8.5 13h7M8.5 16.5h7M8.5 9.5h2" />
+    </svg>
+  );
+}
+
+export function Newspaper(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="4.5" width="13.5" height="15" rx="1.6" />
+      <path d="M16.5 8H19a1 1 0 0 1 1 1v8.5a2 2 0 0 1-2 2H6" />
+      <path d="M6.5 8.5h6.5M6.5 12h6.5M6.5 15.5h4" />
+    </svg>
+  );
+}
+
+export function BookOpen(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 6.8C10.4 5.3 7.9 4.6 4.4 4.6V18c3.5 0 6 .7 7.6 2.2 1.6-1.5 4.1-2.2 7.6-2.2V4.6c-3.5 0-6 .7-7.6 2.2Z" />
+      <path d="M12 6.8V20" />
+    </svg>
+  );
+}
+
+export function HelpCircle(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M9.6 9.4a2.5 2.5 0 1 1 3.3 2.4c-.7.3-1.1.9-1.1 1.6v.4" />
+      <path d="M12 16.8h.01" />
+    </svg>
+  );
+}
+
+export function AppWindow(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+      <path d="M3 9h18M6.5 6.8h.01M9 6.8h.01" />
+    </svg>
+  );
+}
+
+export function LayoutGrid(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3.5" y="3.5" width="7" height="7" rx="1.6" />
+      <rect x="13.5" y="3.5" width="7" height="7" rx="1.6" />
+      <rect x="3.5" y="13.5" width="7" height="7" rx="1.6" />
+      <rect x="13.5" y="13.5" width="7" height="7" rx="1.6" />
+    </svg>
+  );
+}
+
 export function CheckMedWordmark(props: IconProps) {
   return (
     <svg viewBox="0 0 276 41" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
