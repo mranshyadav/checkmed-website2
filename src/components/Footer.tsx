@@ -1,33 +1,35 @@
+import Link from "next/link";
 import { CheckMedWordmark, Mail, MapPin } from "@/lib/icons";
 
 const columns = [
   {
-    title: "Platform",
+    title: "Services",
     links: [
-      { label: "Teleconsultation", href: "#services" },
-      { label: "OPD network", href: "#services" },
-      { label: "Diagnostics", href: "#services" },
-      { label: "Pharmacy", href: "#services" },
-      { label: "Wellness programs", href: "#services" },
+      { label: "Teleconsultation", href: "/services#teleconsultation" },
+      { label: "OPD Benefits", href: "/services#opd-benefits" },
+      { label: "Lab Tests at Home", href: "/services#lab-tests" },
+      { label: "Pharmacy Delivery", href: "/services#pharmacy" },
+      { label: "Health Check-up Camps", href: "/services#health-camps" },
     ],
   },
   {
     title: "Solutions",
     links: [
-      { label: "For Employers", href: "#solutions" },
-      { label: "For Insurers", href: "#solutions" },
-      { label: "For Employees", href: "#solutions" },
-      { label: "For Providers", href: "#solutions" },
+      { label: "For Businesses", href: "/solutions#businesses" },
+      { label: "For Insurance", href: "/solutions#insurance" },
+      { label: "For Healthcare Partners", href: "/solutions#healthcare-partners" },
+      { label: "Products", href: "/products" },
+      { label: "Resources", href: "/resources" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "How it works", href: "#how" },
-      { label: "Partners", href: "#partners" },
-      { label: "Clients", href: "#clients" },
-      { label: "Outcomes", href: "#outcomes" },
-      { label: "Book a demo", href: "#contact" },
+      { label: "About Us", href: "/company#about" },
+      { label: "Leadership Team", href: "/company#leadership" },
+      { label: "Careers", href: "/company#careers" },
+      { label: "Media Coverage", href: "/company#media" },
+      { label: "Contact Us", href: "/company#contact" },
     ],
   },
 ];
@@ -39,9 +41,9 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="max-w-sm">
-            <a href="#top" className="flex items-center" aria-label="CheckMed home">
+            <Link href="/" className="flex items-center" aria-label="CheckMed home">
               <CheckMedWordmark className="h-9 w-auto" />
-            </a>
+            </Link>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-500">
               Everything it takes to keep your employees safe from IPD — preventive care, OPD,
               teleconsultation and wellness, all in one platform.
@@ -68,12 +70,12 @@ export default function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm text-ink-500 transition-colors hover:text-brand-700"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

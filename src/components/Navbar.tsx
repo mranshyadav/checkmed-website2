@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   CheckMedWordmark,
   Menu,
@@ -42,24 +44,24 @@ const solutions: { label: string; icon: Ico; items: Leaf[] }[] = [
     label: "Businesses",
     icon: Building,
     items: [
-      { icon: HeartPulse, title: "Employee Health Benefits", desc: "OPD, teleconsult & wellness for teams", href: "#solutions" },
-      { icon: Activity, title: "Workforce Wellness", desc: "Preventive programs & on-site camps", href: "#services" },
+      { icon: HeartPulse, title: "Employee Health Benefits", desc: "OPD, teleconsult & wellness for teams", href: "/solutions#employee-health-benefits" },
+      { icon: Activity, title: "Workforce Wellness", desc: "Preventive programs & on-site camps", href: "/solutions#workforce-wellness" },
     ],
   },
   {
     label: "Insurance",
     icon: Umbrella,
     items: [
-      { icon: ChartDown, title: "Claims Reduction", desc: "Cut avoidable IPD admissions", href: "#outcomes" },
-      { icon: ShieldHeart, title: "Risk & Underwriting", desc: "Early-screening risk insights", href: "#outcomes" },
+      { icon: ChartDown, title: "Claims Reduction", desc: "Cut avoidable IPD admissions", href: "/solutions#claims-reduction" },
+      { icon: ShieldHeart, title: "Risk & Underwriting", desc: "Early-screening risk insights", href: "/solutions#risk-underwriting" },
     ],
   },
   {
     label: "Healthcare Partners",
     icon: Hospital,
     items: [
-      { icon: Stethoscope, title: "Provider Network", desc: "Steady, qualified patient flow", href: "#partners" },
-      { icon: Users, title: "Care Coordination", desc: "Integrated referrals & records", href: "#partners" },
+      { icon: Stethoscope, title: "Provider Network", desc: "Steady, qualified patient flow", href: "/solutions#provider-network" },
+      { icon: Users, title: "Care Coordination", desc: "Integrated referrals & records", href: "/solutions#care-coordination" },
     ],
   },
 ];
@@ -68,64 +70,64 @@ const services: { label: string; items: Leaf[] }[] = [
   {
     label: "Corporate Services",
     items: [
-      { icon: Stethoscope, title: "OPD Benefits", desc: "Cashless in-clinic consults", href: "#services" },
-      { icon: Calendar, title: "Health Check-up Camps", desc: "On-site screenings & drives", href: "#services" },
-      { icon: Video, title: "Teleconsultation", desc: "24/7 doctors for your team", href: "#services" },
-      { icon: Brain, title: "Mental Wellness (EAP)", desc: "Confidential counselling", href: "#services" },
+      { icon: Stethoscope, title: "OPD Benefits", desc: "Cashless in-clinic consults", href: "/services#opd-benefits" },
+      { icon: Calendar, title: "Health Check-up Camps", desc: "On-site screenings & drives", href: "/services#health-camps" },
+      { icon: Video, title: "Teleconsultation", desc: "24/7 doctors for your team", href: "/services#teleconsultation" },
+      { icon: Brain, title: "Mental Wellness (EAP)", desc: "Confidential counselling", href: "/services#mental-wellness" },
     ],
   },
   {
     label: "Individual Services",
     items: [
-      { icon: Video, title: "Doctor Consultations", desc: "Talk to a doctor in minutes", href: "#services" },
-      { icon: Flask, title: "Lab Tests at Home", desc: "Free sample collection", href: "#services" },
-      { icon: Pill, title: "Pharmacy Delivery", desc: "Medicines to your door", href: "#services" },
-      { icon: FileText, title: "Health Records", desc: "Secure, all in one place", href: "#services" },
+      { icon: Video, title: "Doctor Consultations", desc: "Talk to a doctor in minutes", href: "/services#doctor-consultations" },
+      { icon: Flask, title: "Lab Tests at Home", desc: "Free sample collection", href: "/services#lab-tests" },
+      { icon: Pill, title: "Pharmacy Delivery", desc: "Medicines to your door", href: "/services#pharmacy" },
+      { icon: FileText, title: "Health Records", desc: "Secure, all in one place", href: "/services#health-records" },
     ],
   },
 ];
 
 const products: Leaf[] = [
-  { icon: LayoutGrid, title: "Employer Dashboard", desc: "Manage benefits, track utilisation & wellbeing.", href: "#solutions" },
-  { icon: AppWindow, title: "CheckMed App", desc: "Care, bookings & records for every employee.", href: "#services" },
-  { icon: Hospital, title: "Provider Portal", desc: "Appointments, workflow & settlements.", href: "#partners" },
-  { icon: ChartDown, title: "Insurer Analytics", desc: "Risk signals & claims insights.", href: "#outcomes" },
+  { icon: LayoutGrid, title: "Employer Dashboard", desc: "Manage benefits, track utilisation & wellbeing.", href: "/products#employer-dashboard" },
+  { icon: AppWindow, title: "CheckMed App", desc: "Care, bookings & records for every employee.", href: "/products#checkmed-app" },
+  { icon: Hospital, title: "Provider Portal", desc: "Appointments, workflow & settlements.", href: "/products#provider-portal" },
+  { icon: ChartDown, title: "Insurer Analytics", desc: "Risk signals & claims insights.", href: "/products#insurer-analytics" },
 ];
 
 const resources: { items: Leaf[]; featured: { tag: string; title: string; desc: string; href: string } } = {
   items: [
-    { icon: Newspaper, title: "Blogs", desc: "Guides on employee health & benefits", href: "#" },
-    { icon: BookOpen, title: "Case Studies", desc: "Real results from CheckMed teams", href: "#clients" },
-    { icon: FileText, title: "Whitepapers", desc: "Deep dives & original research", href: "#" },
-    { icon: HelpCircle, title: "FAQs", desc: "Answers to common questions", href: "#" },
+    { icon: Newspaper, title: "Blogs", desc: "Guides on employee health & benefits", href: "/resources#blogs" },
+    { icon: BookOpen, title: "Case Studies", desc: "Real results from CheckMed teams", href: "/resources#case-studies" },
+    { icon: FileText, title: "Whitepapers", desc: "Deep dives & original research", href: "/resources#whitepapers" },
+    { icon: HelpCircle, title: "FAQs", desc: "Answers to common questions", href: "/resources#faqs" },
   ],
   featured: {
     tag: "Featured",
     title: "How a 1,200-person team cut IPD claims by 30%",
     desc: "See the playbook behind the results.",
-    href: "#clients",
+    href: "/resources#case-studies",
   },
 };
 
 const company: Leaf[] = [
-  { icon: Building, title: "About Us", desc: "Our mission and story", href: "#outcomes" },
-  { icon: Users, title: "Leadership Team", desc: "The people behind CheckMed", href: "#" },
-  { icon: Briefcase, title: "Careers", desc: "Join us — we're hiring", href: "#" },
-  { icon: Newspaper, title: "Media Coverage", desc: "CheckMed in the press", href: "#clients" },
-  { icon: Mail, title: "Contact Us", desc: "Talk to our team", href: "#contact" },
+  { icon: Building, title: "About Us", desc: "Our mission and story", href: "/company#about" },
+  { icon: Users, title: "Leadership Team", desc: "The people behind CheckMed", href: "/company#leadership" },
+  { icon: Briefcase, title: "Careers", desc: "Join us — we're hiring", href: "/company#careers" },
+  { icon: Newspaper, title: "Media Coverage", desc: "CheckMed in the press", href: "/company#media" },
+  { icon: Mail, title: "Contact Us", desc: "Talk to our team", href: "/company#contact" },
 ];
 
 const MEGA = ["solutions", "services", "products", "resources"] as const;
 type MegaKey = (typeof MEGA)[number];
 type Active = MegaKey | "company";
 
-const topNav: { key: string; label: string; href?: string; mega?: MegaKey; company?: boolean }[] = [
-  { key: "home", label: "Home", href: "#top" },
-  { key: "solutions", label: "Solutions", mega: "solutions" },
-  { key: "services", label: "Services", mega: "services" },
-  { key: "products", label: "Products", mega: "products" },
-  { key: "resources", label: "Resources", mega: "resources" },
-  { key: "company", label: "Company", company: true },
+const topNav: { key: string; label: string; href: string; mega?: MegaKey; company?: boolean }[] = [
+  { key: "home", label: "Home", href: "/" },
+  { key: "solutions", label: "Solutions", href: "/solutions", mega: "solutions" },
+  { key: "services", label: "Services", href: "/services", mega: "services" },
+  { key: "products", label: "Products", href: "/products", mega: "products" },
+  { key: "resources", label: "Resources", href: "/resources", mega: "resources" },
+  { key: "company", label: "Company", href: "/company", company: true },
 ];
 
 const megaFooterNote: Record<MegaKey, string> = {
@@ -135,23 +137,42 @@ const megaFooterNote: Record<MegaKey, string> = {
   resources: "Insights to build a healthier workforce.",
 };
 
+const splitHref = (href: string): [string, string] => {
+  const i = href.indexOf("#");
+  return i === -1 ? [href, ""] : [href.slice(0, i) || "/", href.slice(i)];
+};
+
 /* --------------------------- shared pieces --------------------------- */
 
-function LeafLink({ item }: { item: Leaf }) {
+type NavFns = { onNavigate: (href: string) => void; isLeafActive: (href: string) => boolean };
+
+function LeafLink({ item, fns }: { item: Leaf; fns: NavFns }) {
   const Icon = item.icon;
+  const active = fns.isLeafActive(item.href);
   return (
-    <a
+    <Link
       href={item.href}
-      className="group/li flex items-start gap-3 rounded-2xl p-2.5 transition-colors hover:bg-brand-50"
+      onClick={() => fns.onNavigate(item.href)}
+      className={`group/li flex items-start gap-3 rounded-2xl p-2.5 transition-colors ${
+        active ? "bg-brand-50" : "hover:bg-brand-50"
+      }`}
     >
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover/li:bg-brand-600 group-hover/li:text-white">
+      <span
+        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-colors ${
+          active
+            ? "bg-brand-600 text-white"
+            : "bg-brand-50 text-brand-600 group-hover/li:bg-brand-600 group-hover/li:text-white"
+        }`}
+      >
         <Icon className="h-5 w-5" />
       </span>
       <span className="min-w-0">
-        <span className="block text-sm font-semibold text-ink-900">{item.title}</span>
+        <span className={`block text-sm font-semibold ${active ? "text-brand-700" : "text-ink-900"}`}>
+          {item.title}
+        </span>
         <span className="mt-0.5 block text-xs leading-relaxed text-ink-500">{item.desc}</span>
       </span>
-    </a>
+    </Link>
   );
 }
 
@@ -164,12 +185,16 @@ function ColHeader({ icon: Icon, label }: { icon?: Ico; label: string }) {
   );
 }
 
-function ProductCard({ item }: { item: Leaf }) {
+function ProductCard({ item, fns }: { item: Leaf; fns: NavFns }) {
   const Icon = item.icon;
+  const active = fns.isLeafActive(item.href);
   return (
-    <a
+    <Link
       href={item.href}
-      className="group/card flex flex-col rounded-2xl border border-ink-100 p-5 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:bg-brand-50/40"
+      onClick={() => fns.onNavigate(item.href)}
+      className={`group/card flex flex-col rounded-2xl border p-5 transition-all hover:-translate-y-0.5 ${
+        active ? "border-brand-300 bg-brand-50/60" : "border-ink-100 hover:border-brand-200 hover:bg-brand-50/40"
+      }`}
     >
       <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover/card:bg-brand-600 group-hover/card:text-white">
         <Icon className="h-5.5 w-5.5" />
@@ -179,25 +204,26 @@ function ProductCard({ item }: { item: Leaf }) {
       <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-700">
         Explore <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/card:translate-x-0.5" />
       </span>
-    </a>
+    </Link>
   );
 }
 
-function MegaFooter({ note }: { note: string }) {
+function MegaFooter({ note, fns }: { note: string; fns: NavFns }) {
   return (
     <div className="mt-4 flex items-center justify-between gap-4 border-t border-ink-100 px-1 pt-3">
       <span className="text-xs text-ink-400">{note}</span>
-      <a
-        href="#contact"
+      <Link
+        href="/company#contact"
+        onClick={() => fns.onNavigate("/company#contact")}
         className="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-800"
       >
         Talk to our team <ArrowRight className="h-3.5 w-3.5" />
-      </a>
+      </Link>
     </div>
   );
 }
 
-function MegaContent({ which }: { which: MegaKey }) {
+function MegaContent({ which, fns }: { which: MegaKey; fns: NavFns }) {
   if (which === "solutions") {
     return (
       <div className="w-[820px] max-w-[calc(100vw-3rem)]">
@@ -206,12 +232,12 @@ function MegaContent({ which }: { which: MegaKey }) {
             <div key={col.label}>
               <ColHeader icon={col.icon} label={col.label} />
               {col.items.map((it) => (
-                <LeafLink key={it.title} item={it} />
+                <LeafLink key={it.title} item={it} fns={fns} />
               ))}
             </div>
           ))}
         </div>
-        <MegaFooter note={megaFooterNote.solutions} />
+        <MegaFooter note={megaFooterNote.solutions} fns={fns} />
       </div>
     );
   }
@@ -224,12 +250,12 @@ function MegaContent({ which }: { which: MegaKey }) {
             <div key={col.label}>
               <ColHeader label={col.label} />
               {col.items.map((it) => (
-                <LeafLink key={it.title} item={it} />
+                <LeafLink key={it.title} item={it} fns={fns} />
               ))}
             </div>
           ))}
         </div>
-        <MegaFooter note={megaFooterNote.services} />
+        <MegaFooter note={megaFooterNote.services} fns={fns} />
       </div>
     );
   }
@@ -240,10 +266,10 @@ function MegaContent({ which }: { which: MegaKey }) {
         <ColHeader label="Platform" />
         <div className="grid grid-cols-2 gap-4">
           {products.map((it) => (
-            <ProductCard key={it.title} item={it} />
+            <ProductCard key={it.title} item={it} fns={fns} />
           ))}
         </div>
-        <MegaFooter note={megaFooterNote.products} />
+        <MegaFooter note={megaFooterNote.products} fns={fns} />
       </div>
     );
   }
@@ -256,12 +282,13 @@ function MegaContent({ which }: { which: MegaKey }) {
           <ColHeader label="Resources" />
           <div className="grid grid-cols-2 gap-1">
             {resources.items.map((it) => (
-              <LeafLink key={it.title} item={it} />
+              <LeafLink key={it.title} item={it} fns={fns} />
             ))}
           </div>
         </div>
-        <a
+        <Link
           href={resources.featured.href}
+          onClick={() => fns.onNavigate(resources.featured.href)}
           className="group/feat relative flex flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-ink-900 p-6 text-white"
         >
           <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
@@ -275,9 +302,9 @@ function MegaContent({ which }: { which: MegaKey }) {
           <span className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
             Read more <ArrowRight className="h-4 w-4 transition-transform group-hover/feat:translate-x-0.5" />
           </span>
-        </a>
+        </Link>
       </div>
-      <MegaFooter note={megaFooterNote.resources} />
+      <MegaFooter note={megaFooterNote.resources} fns={fns} />
     </div>
   );
 }
@@ -287,29 +314,38 @@ function MegaContent({ which }: { which: MegaKey }) {
 const mobileMenu: {
   key: string;
   label: string;
-  href?: string;
+  href: string;
   groups?: { label?: string; items: { title: string; href: string }[] }[];
 }[] = [
-  { key: "home", label: "Home", href: "#top" },
+  { key: "home", label: "Home", href: "/" },
   {
     key: "solutions",
     label: "Solutions",
+    href: "/solutions",
     groups: solutions.map((s) => ({ label: s.label, items: s.items.map((i) => ({ title: i.title, href: i.href })) })),
   },
   {
     key: "services",
     label: "Services",
+    href: "/services",
     groups: services.map((s) => ({ label: s.label, items: s.items.map((i) => ({ title: i.title, href: i.href })) })),
   },
-  { key: "products", label: "Products", groups: [{ items: products.map((i) => ({ title: i.title, href: i.href })) }] },
+  {
+    key: "products",
+    label: "Products",
+    href: "/products",
+    groups: [{ items: products.map((i) => ({ title: i.title, href: i.href })) }],
+  },
   {
     key: "resources",
     label: "Resources",
+    href: "/resources",
     groups: [{ items: resources.items.map((i) => ({ title: i.title, href: i.href })) }],
   },
   {
     key: "company",
     label: "Company",
+    href: "/company",
     groups: [{ items: company.map((c) => ({ title: c.title, href: c.href })) }],
   },
 ];
@@ -317,9 +353,11 @@ const mobileMenu: {
 /* ------------------------------- navbar ------------------------------- */
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [active, setActive] = useState<Active | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
+  const [hash, setHash] = useState("");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const openMega = (k: Active) => {
@@ -339,6 +377,25 @@ export default function Navbar() {
     setMobileSub(null);
   };
 
+  /* track current hash for submenu active states */
+  useEffect(() => {
+    const update = () => setHash(window.location.hash);
+    update();
+    window.addEventListener("hashchange", update);
+    window.addEventListener("popstate", update);
+    return () => {
+      window.removeEventListener("hashchange", update);
+      window.removeEventListener("popstate", update);
+    };
+  }, [pathname]);
+
+  /* close menus whenever the route changes */
+  useEffect(() => {
+    setActive(null);
+    setMobileOpen(false);
+    setMobileSub(null);
+  }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -357,20 +414,43 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const isRouteActive = (route: string) =>
+    route === "/" ? pathname === "/" : pathname.startsWith(route);
+
+  const isLeafActive = (href: string) => {
+    const [p, h] = splitHref(href);
+    const pathOk = p === "/" ? pathname === "/" : pathname === p;
+    return pathOk && (h ? hash === h : true);
+  };
+
+  const onNavigate = (href: string) => {
+    setActive(null);
+    const [, h] = splitHref(href);
+    setHash(h);
+  };
+
+  const fns: NavFns = { onNavigate, isLeafActive };
+
+  const triggerCls = (highlighted: boolean) =>
+    `inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
+      highlighted ? "bg-brand-50 text-brand-700" : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
+    }`;
+
   return (
     <header
       className="fixed inset-x-0 top-0 z-50 border-b border-ink-100 bg-white"
       onMouseLeave={scheduleClose}
     >
       <nav className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[72px]">
-        <a
-          href="#top"
+        <Link
+          href="/"
           className="flex items-center"
           aria-label="CheckMed home"
           onMouseEnter={() => setActive(null)}
+          onClick={() => onNavigate("/")}
         >
           <CheckMedWordmark className="h-8 w-auto" />
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-0.5 lg:flex">
@@ -378,47 +458,41 @@ export default function Navbar() {
             if (it.mega) {
               const isOpen = active === it.mega;
               return (
-                <button
+                <Link
                   key={it.key}
-                  type="button"
+                  href={it.href}
                   onMouseEnter={() => openMega(it.mega as MegaKey)}
                   onFocus={() => openMega(it.mega as MegaKey)}
+                  onClick={() => onNavigate(it.href)}
                   aria-haspopup="true"
                   aria-expanded={isOpen}
-                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
-                    isOpen
-                      ? "bg-brand-50 text-brand-700"
-                      : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
-                  }`}
+                  className={triggerCls(isOpen || isRouteActive(it.href))}
                 >
                   {it.label}
                   <ChevronDown
                     className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                   />
-                </button>
+                </Link>
               );
             }
             if (it.company) {
               const isOpen = active === "company";
               return (
                 <div key={it.key} className="relative">
-                  <button
-                    type="button"
+                  <Link
+                    href={it.href}
                     onMouseEnter={() => openMega("company")}
                     onFocus={() => openMega("company")}
+                    onClick={() => onNavigate(it.href)}
                     aria-haspopup="true"
                     aria-expanded={isOpen}
-                    className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
-                      isOpen
-                        ? "bg-brand-50 text-brand-700"
-                        : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
-                    }`}
+                    className={triggerCls(isOpen || isRouteActive(it.href))}
                   >
                     {it.label}
                     <ChevronDown
                       className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />
-                  </button>
+                  </Link>
                   {isOpen ? (
                     <div
                       className="absolute right-0 top-full z-50 pt-2.5"
@@ -427,7 +501,7 @@ export default function Navbar() {
                     >
                       <div className="animate-menu-in w-[300px] rounded-[20px] border border-ink-100 bg-white p-2 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]">
                         {company.map((c) => (
-                          <LeafLink key={c.title} item={c} />
+                          <LeafLink key={c.title} item={c} fns={fns} />
                         ))}
                       </div>
                     </div>
@@ -436,27 +510,29 @@ export default function Navbar() {
               );
             }
             return (
-              <a
+              <Link
                 key={it.key}
                 href={it.href}
                 onMouseEnter={() => setActive(null)}
-                className="rounded-full px-3.5 py-2 text-[15px] font-medium text-ink-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
+                onClick={() => onNavigate(it.href)}
+                className={triggerCls(isRouteActive(it.href))}
               >
                 {it.label}
-              </a>
+              </Link>
             );
           })}
         </div>
 
         {/* Right CTA */}
         <div className="hidden items-center gap-3 lg:flex" onMouseEnter={() => setActive(null)}>
-          <a
-            href="#contact"
+          <Link
+            href="/company#contact"
+            onClick={() => onNavigate("/company#contact")}
             className="group inline-flex items-center gap-1.5 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             Book a demo
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -481,7 +557,7 @@ export default function Navbar() {
               key={active}
               className="animate-menu-in rounded-[20px] border border-ink-100 bg-white p-5 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]"
             >
-              <MegaContent which={active as MegaKey} />
+              <MegaContent which={active as MegaKey} fns={fns} />
             </div>
           </div>
         ) : null}
@@ -497,19 +573,37 @@ export default function Navbar() {
           {mobileMenu.map((sec) =>
             sec.groups ? (
               <div key={sec.key}>
-                <button
-                  type="button"
-                  onClick={() => setMobileSub((s) => (s === sec.key ? null : sec.key))}
-                  aria-expanded={mobileSub === sec.key}
-                  className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-brand-50"
+                <div
+                  className={`flex items-center rounded-xl transition-colors ${
+                    isRouteActive(sec.href) ? "bg-brand-50" : "hover:bg-brand-50"
+                  }`}
                 >
-                  {sec.label}
-                  <ChevronDown
-                    className={`h-4 w-4 text-ink-400 transition-transform ${
-                      mobileSub === sec.key ? "rotate-180" : ""
+                  <Link
+                    href={sec.href}
+                    onClick={() => {
+                      onNavigate(sec.href);
+                      closeMobile();
+                    }}
+                    className={`flex-1 px-4 py-3 text-base font-medium ${
+                      isRouteActive(sec.href) ? "text-brand-700" : "text-ink-800"
                     }`}
-                  />
-                </button>
+                  >
+                    {sec.label}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setMobileSub((s) => (s === sec.key ? null : sec.key))}
+                    aria-expanded={mobileSub === sec.key}
+                    aria-label={`Toggle ${sec.label} submenu`}
+                    className="px-4 py-3 text-ink-400"
+                  >
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        mobileSub === sec.key ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                </div>
                 {mobileSub === sec.key ? (
                   <div className="pb-1 pl-3">
                     {sec.groups.map((g, gi) => (
@@ -520,14 +614,21 @@ export default function Navbar() {
                           </p>
                         ) : null}
                         {g.items.map((it) => (
-                          <a
+                          <Link
                             key={it.title}
                             href={it.href}
-                            onClick={closeMobile}
-                            className="block rounded-xl py-2 pl-6 pr-4 text-[15px] text-ink-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
+                            onClick={() => {
+                              onNavigate(it.href);
+                              closeMobile();
+                            }}
+                            className={`block rounded-xl py-2 pl-6 pr-4 text-[15px] transition-colors ${
+                              isLeafActive(it.href)
+                                ? "bg-brand-50 text-brand-700"
+                                : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
+                            }`}
                           >
                             {it.title}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     ))}
@@ -535,23 +636,33 @@ export default function Navbar() {
                 ) : null}
               </div>
             ) : (
-              <a
+              <Link
                 key={sec.key}
                 href={sec.href}
-                onClick={closeMobile}
-                className="block rounded-xl px-4 py-3 text-base font-medium text-ink-800 transition-colors hover:bg-brand-50 hover:text-brand-700"
+                onClick={() => {
+                  onNavigate(sec.href);
+                  closeMobile();
+                }}
+                className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                  isRouteActive(sec.href)
+                    ? "bg-brand-50 text-brand-700"
+                    : "text-ink-800 hover:bg-brand-50 hover:text-brand-700"
+                }`}
               >
                 {sec.label}
-              </a>
+              </Link>
             )
           )}
-          <a
-            href="#contact"
-            onClick={closeMobile}
+          <Link
+            href="/company#contact"
+            onClick={() => {
+              onNavigate("/company#contact");
+              closeMobile();
+            }}
             className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-ink-900 px-4 py-3 text-base font-semibold text-white"
           >
             Book a demo <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </header>

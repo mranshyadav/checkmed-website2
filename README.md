@@ -23,22 +23,22 @@ site leads with that single promise:
 No UI or icon libraries — everything ships as static, prerendered HTML/CSS for a
 fast first load.
 
-## Page structure
+## Site structure
 
-The landing page (`src/app/page.tsx`) is composed of focused section components
-in `src/components/`:
+A multi-page architecture. The shared `Navbar` (mega menus) and `Footer` live in
+the root layout; every submenu item deep-links to an anchored section on its page
+(e.g. `/services#pharmacy`), with smooth scrolling and a fixed-header offset.
 
-1. **Navbar** — sticky, scroll-aware, with a mobile menu
-2. **Hero** — the core message + floating "workforce health" visual
-3. **EcosystemStrip** — the partner network (corporates, insurers, TPAs, providers…)
-4. **Problem** — why IPD is the most expensive *and* most avoidable moment
-5. **HowItWorks** — the continuous prevention loop that ends before the hospital
-6. **Features** — a bento grid of every service (teleconsult, OPD, labs, pharmacy, wellness…)
-7. **Audiences** — value for employers, insurers, employees and providers
-8. **Outcomes** — animated impact counters
-9. **Testimonials** — voices from HR, insurers and employees
-10. **ContactCTA** — a "book a demo" form
-11. **Footer**
+| Route | Sections |
+| --- | --- |
+| `/` | Hero, ecosystem strip, the IPD problem, how it works, clients, testimonials, contact |
+| `/solutions` | `#businesses`, `#insurance`, `#healthcare-partners` (each with anchored sub-blocks), partners, outcomes |
+| `/services` | `#corporate` & `#individual` with per-service anchors (`#opd-benefits`, `#teleconsultation`, `#pharmacy`…) |
+| `/products` | `#employer-dashboard`, `#checkmed-app`, `#provider-portal`, `#insurer-analytics` |
+| `/resources` | `#blogs`, `#case-studies`, `#whitepapers`, `#faqs` |
+| `/company` | `#about`, `#leadership`, `#careers`, `#media`, `#contact` |
+
+The navbar highlights the active route and the active submenu item (route + hash).
 
 ### Design system
 

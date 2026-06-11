@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -78,7 +80,9 @@ export default function RootLayout({
             __html: "document.documentElement.classList.add('reveal-on');",
           }}
         />
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
