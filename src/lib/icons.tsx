@@ -256,6 +256,16 @@ export function Star(props: IconProps) {
   );
 }
 
+export function Briefcase(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="7.5" width="18" height="12.5" rx="2.5" />
+      <path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" />
+      <path d="M3 12.5h18M11 12.5v2h2v-2" />
+    </svg>
+  );
+}
+
 export function FileText(props: IconProps) {
   return (
     <svg {...base} {...props}>

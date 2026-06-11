@@ -28,6 +28,8 @@ import {
   AppWindow,
   LayoutGrid,
   Spark,
+  Briefcase,
+  Mail,
 } from "@/lib/icons";
 
 type Ico = ComponentType<SVGProps<SVGSVGElement>>;
@@ -105,17 +107,25 @@ const resources: { items: Leaf[]; featured: { tag: string; title: string; desc: 
   },
 };
 
+const company: Leaf[] = [
+  { icon: Building, title: "About Us", desc: "Our mission and story", href: "#outcomes" },
+  { icon: Users, title: "Leadership Team", desc: "The people behind CheckMed", href: "#" },
+  { icon: Briefcase, title: "Careers", desc: "Join us — we're hiring", href: "#" },
+  { icon: Newspaper, title: "Media Coverage", desc: "CheckMed in the press", href: "#clients" },
+  { icon: Mail, title: "Contact Us", desc: "Talk to our team", href: "#contact" },
+];
+
 const MEGA = ["solutions", "services", "products", "resources"] as const;
 type MegaKey = (typeof MEGA)[number];
+type Active = MegaKey | "company";
 
-const topNav: { key: string; label: string; href?: string; mega?: MegaKey }[] = [
+const topNav: { key: string; label: string; href?: string; mega?: MegaKey; company?: boolean }[] = [
   { key: "home", label: "Home", href: "#top" },
   { key: "solutions", label: "Solutions", mega: "solutions" },
   { key: "services", label: "Services", mega: "services" },
   { key: "products", label: "Products", mega: "products" },
   { key: "resources", label: "Resources", mega: "resources" },
-  { key: "about", label: "About Us", href: "#outcomes" },
-  { key: "contact", label: "Contact Us", href: "#contact" },
+  { key: "company", label: "Company", company: true },
 ];
 
 const megaFooterNote: Record<MegaKey, string> = {
@@ -297,19 +307,22 @@ const mobileMenu: {
     label: "Resources",
     groups: [{ items: resources.items.map((i) => ({ title: i.title, href: i.href })) }],
   },
-  { key: "about", label: "About Us", href: "#outcomes" },
-  { key: "contact", label: "Contact Us", href: "#contact" },
+  {
+    key: "company",
+    label: "Company",
+    groups: [{ items: company.map((c) => ({ title: c.title, href: c.href })) }],
+  },
 ];
 
 /* ------------------------------- navbar ------------------------------- */
 
 export default function Navbar() {
-  const [active, setActive] = useState<MegaKey | null>(null);
+  const [active, setActive] = useState<Active | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const openMega = (k: MegaKey) => {
+  const openMega = (k: Active) => {
     if (timer.current) clearTimeout(timer.current);
     setActive(k);
   };
@@ -361,29 +374,68 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-0.5 lg:flex">
-          {topNav.map((it) =>
-            it.mega ? (
-              <button
-                key={it.key}
-                type="button"
-                onMouseEnter={() => openMega(it.mega as MegaKey)}
-                onFocus={() => openMega(it.mega as MegaKey)}
-                aria-haspopup="true"
-                aria-expanded={active === it.mega}
-                className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
-                  active === it.mega
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
-                }`}
-              >
-                {it.label}
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${
-                    active === it.mega ? "rotate-180" : ""
+          {topNav.map((it) => {
+            if (it.mega) {
+              const isOpen = active === it.mega;
+              return (
+                <button
+                  key={it.key}
+                  type="button"
+                  onMouseEnter={() => openMega(it.mega as MegaKey)}
+                  onFocus={() => openMega(it.mega as MegaKey)}
+                  aria-haspopup="true"
+                  aria-expanded={isOpen}
+                  className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
+                    isOpen
+                      ? "bg-brand-50 text-brand-700"
+                      : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
                   }`}
-                />
-              </button>
-            ) : (
+                >
+                  {it.label}
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+              );
+            }
+            if (it.company) {
+              const isOpen = active === "company";
+              return (
+                <div key={it.key} className="relative">
+                  <button
+                    type="button"
+                    onMouseEnter={() => openMega("company")}
+                    onFocus={() => openMega("company")}
+                    aria-haspopup="true"
+                    aria-expanded={isOpen}
+                    className={`inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-medium transition-colors ${
+                      isOpen
+                        ? "bg-brand-50 text-brand-700"
+                        : "text-ink-700 hover:bg-brand-50 hover:text-brand-700"
+                    }`}
+                  >
+                    {it.label}
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {isOpen ? (
+                    <div
+                      className="absolute right-0 top-full z-50 pt-2.5"
+                      onMouseEnter={cancelClose}
+                      onMouseLeave={scheduleClose}
+                    >
+                      <div className="animate-menu-in w-[300px] rounded-[20px] border border-ink-100 bg-white p-2 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]">
+                        {company.map((c) => (
+                          <LeafLink key={c.title} item={c} />
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+            return (
               <a
                 key={it.key}
                 href={it.href}
@@ -392,8 +444,8 @@ export default function Navbar() {
               >
                 {it.label}
               </a>
-            )
-          )}
+            );
+          })}
         </div>
 
         {/* Right CTA */}
@@ -418,8 +470,8 @@ export default function Navbar() {
           {mobileOpen ? <Close className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* Mega panel (desktop) */}
-        {active ? (
+        {/* Mega panel (desktop) — centered, for the four wide menus */}
+        {active && (MEGA as readonly string[]).includes(active) ? (
           <div
             className="absolute left-1/2 top-full z-50 hidden -translate-x-1/2 pt-2.5 lg:block"
             onMouseEnter={cancelClose}
@@ -429,7 +481,7 @@ export default function Navbar() {
               key={active}
               className="animate-menu-in rounded-[20px] border border-ink-100 bg-white p-5 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]"
             >
-              <MegaContent which={active} />
+              <MegaContent which={active as MegaKey} />
             </div>
           </div>
         ) : null}
