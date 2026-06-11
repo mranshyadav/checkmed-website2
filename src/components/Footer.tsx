@@ -1,4 +1,4 @@
-import { CheckMedLogo, Mail, MapPin } from "@/lib/icons";
+import { CheckMedWordmark, Mail, MapPin } from "@/lib/icons";
 
 const columns = [
   {
@@ -39,11 +39,8 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="max-w-sm">
-            <a href="#top" className="flex items-center gap-2.5" aria-label="CheckMed home">
-              <CheckMedLogo className="h-9 w-9" />
-              <span className="font-display text-[1.35rem] font-bold tracking-tight text-ink-900">
-                Check<span className="text-brand-600">Med</span>
-              </span>
+            <a href="#top" className="flex items-center" aria-label="CheckMed home">
+              <CheckMedWordmark className="h-9 w-auto" />
             </a>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-500">
               Everything it takes to keep your employees safe from IPD — preventive care, OPD,

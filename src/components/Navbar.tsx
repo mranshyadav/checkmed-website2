@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CheckMedLogo, Menu, Close, ArrowRight } from "@/lib/icons";
+import { CheckMedWordmark, Menu, Close, ArrowRight } from "@/lib/icons";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -23,11 +23,8 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink-100 bg-white">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:h-[72px]">
-        <a href="#top" className="flex items-center gap-2.5" aria-label="CheckMed home">
-          <CheckMedLogo className="h-9 w-9" />
-          <span className="font-display text-[1.35rem] font-bold tracking-tight text-ink-900">
-            Check<span className="text-brand-600">Med</span>
-          </span>
+        <a href="#top" className="flex items-center" aria-label="CheckMed home">
+          <CheckMedWordmark className="h-9 w-auto" />
         </a>
 
         <div className="hidden items-center gap-1 lg:flex">
