@@ -216,6 +216,14 @@ export function ArrowRight(props: IconProps) {
   );
 }
 
+export function ChevronDown(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <svg {...base} {...props}>
