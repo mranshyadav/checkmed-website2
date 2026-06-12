@@ -3,36 +3,23 @@ import {
   ArrowRight,
   Video,
   Flask,
+  Stethoscope,
   ShieldHeart,
   Star,
   Lock,
-  Stethoscope,
+  Check,
 } from "@/lib/icons";
 
 const journey = [
-  {
-    icon: Video,
-    day: "Day 0",
-    title: "Symptom reported",
-    detail: "Teleconsult with a doctor in 4 minutes",
-  },
-  {
-    icon: Flask,
-    day: "Day 1",
-    title: "Tests done at home",
-    detail: "Sample picked up, report the same day",
-  },
-  {
-    icon: Stethoscope,
-    day: "Day 3",
-    title: "Resolved at OPD",
-    detail: "Hospitalisation avoided — ₹84,000 saved",
-  },
+  { icon: Video, day: "Day 0", title: "Symptom reported", detail: "Teleconsult with a doctor in 4 minutes" },
+  { icon: Flask, day: "Day 1", title: "Tests done at home", detail: "Sample collected, report the same day" },
+  { icon: Stethoscope, day: "Day 3", title: "Resolved at OPD", detail: "Treated early, fully recovered" },
 ];
+
+const avatars = ["AK", "RM", "PN", "DR"];
 
 const proof = [
   { value: "250K+", label: "lives covered" },
-  { value: "200+", label: "companies onboard" },
   { value: "96%", label: "renewal rate" },
 ];
 
@@ -61,9 +48,9 @@ export default function Hero() {
 
           <Reveal delay={2}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-600">
-              CheckMed brings doctors, diagnostics, pharmacy and preventive care into one
-              trusted platform — so health issues are caught early and resolved long before
-              they become hospitalisations.
+              CheckMed brings doctors, diagnostics, pharmacy and preventive care into one trusted
+              platform — so health issues are caught early and resolved long before they become
+              hospitalisations.
             </p>
           </Reveal>
 
@@ -85,92 +72,126 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          {/* Quiet proof bar */}
-          <Reveal delay={4}>
-            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-ink-100 pt-7">
-              <span className="flex items-center gap-2.5">
-                <span className="flex gap-0.5" role="img" aria-label="4.9 out of 5 stars">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-amber-400" />
-                  ))}
-                </span>
-                <span className="text-sm text-ink-600">
-                  <span className="font-display font-bold text-ink-900">4.9/5</span> from 200+ teams
-                </span>
+          <Reveal delay={3}>
+            <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-400">
+              <span className="inline-flex items-center gap-1.5">
+                <Check className="h-4 w-4 text-brand-600" strokeWidth={2.5} /> 30-minute walkthrough
               </span>
-              {proof.map((p) => (
-                <span key={p.label} className="text-sm text-ink-500">
-                  <span className="font-display font-bold text-ink-900">{p.value}</span> {p.label}
-                </span>
-              ))}
+              <span className="text-ink-300">·</span>
+              <span>Live in days</span>
+              <span className="text-ink-300">·</span>
+              <span>No long-term lock-in</span>
+            </p>
+          </Reveal>
+
+          {/* Social proof */}
+          <Reveal delay={4}>
+            <div className="mt-10 flex flex-col gap-5 border-t border-ink-100 pt-7 sm:flex-row sm:items-center sm:gap-7">
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2.5">
+                  {avatars.map((a) => (
+                    <span
+                      key={a}
+                      className="grid h-9 w-9 place-items-center rounded-full border-2 border-white bg-gradient-to-br from-brand-500 to-brand-700 text-[11px] font-bold text-white"
+                    >
+                      {a}
+                    </span>
+                  ))}
+                  <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-white bg-ink-100 text-[10px] font-bold text-ink-600">
+                    200+
+                  </span>
+                </div>
+                <div>
+                  <span className="flex gap-0.5" role="img" aria-label="4.9 out of 5 stars">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 text-amber-400" />
+                    ))}
+                  </span>
+                  <p className="mt-0.5 text-sm text-ink-600">
+                    <span className="font-display font-bold text-ink-900">4.9/5</span> · trusted by
+                    people teams
+                  </p>
+                </div>
+              </div>
+
+              <div className="hidden h-10 w-px bg-ink-100 sm:block" />
+
+              <div className="flex items-center gap-7">
+                {proof.map((p) => (
+                  <div key={p.label}>
+                    <p className="font-display text-xl font-extrabold text-ink-900">{p.value}</p>
+                    <p className="text-xs text-ink-500">{p.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Right: one calm care-journey panel */}
+        {/* Right: calm product-style care timeline */}
         <Reveal delay={2} className="mx-auto w-full max-w-md lg:max-w-none">
           <div className="relative">
-            {/* soft single backdrop */}
             <div className="absolute -inset-5 -z-10 rounded-[2.25rem] bg-brand-50/70" />
 
             <div className="rounded-3xl border border-ink-100 bg-white p-7 sm:p-8">
               {/* header */}
-              <div className="flex items-center gap-3.5 border-b border-ink-100 pb-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-700 text-white">
-                  <ShieldHeart className="h-5.5 w-5.5" />
-                </span>
-                <div>
-                  <p className="font-display text-[17px] font-bold text-ink-900">
-                    Care that arrives early
-                  </p>
-                  <p className="text-sm text-ink-500">A typical CheckMed journey</p>
+              <div className="flex items-center justify-between border-b border-ink-100 pb-5">
+                <div className="flex items-center gap-3.5">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand-700 text-white">
+                    <ShieldHeart className="h-5.5 w-5.5" />
+                  </span>
+                  <div>
+                    <p className="font-display text-[17px] font-bold text-ink-900">
+                      Care that arrives early
+                    </p>
+                    <p className="text-sm text-ink-500">A typical CheckMed journey</p>
+                  </div>
                 </div>
+                <span className="hidden items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-700 sm:inline-flex">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand-500" /> Live
+                </span>
               </div>
 
-              {/* journey timeline */}
-              <ol className="mt-6 space-y-0">
+              {/* timeline */}
+              <ol className="mt-6">
                 {journey.map((step, i) => {
                   const Icon = step.icon;
                   const last = i === journey.length - 1;
                   return (
-                    <li key={step.title} className="relative flex gap-4 pb-7 last:pb-0">
-                      {/* connector */}
+                    <li key={step.title} className="relative flex gap-4 pb-6 last:pb-0">
                       {!last ? (
-                        <span className="absolute left-[21px] top-11 h-[calc(100%-2.5rem)] w-px bg-ink-100" />
+                        <span className="absolute left-[20px] top-11 h-[calc(100%-2.25rem)] w-px bg-ink-100" />
                       ) : null}
-                      <span
-                        className={`relative grid h-[42px] w-[42px] shrink-0 place-items-center rounded-full border ${
-                          last
-                            ? "border-brand-200 bg-brand-50 text-brand-700"
-                            : "border-ink-100 bg-white text-ink-400"
-                        }`}
-                      >
+                      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full border border-ink-100 bg-white text-brand-600">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div className="min-w-0 pt-0.5">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-ink-400">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-ink-400">
                           {step.day}
                         </p>
                         <p className="mt-0.5 font-semibold text-ink-900">{step.title}</p>
-                        <p
-                          className={`mt-0.5 text-sm ${
-                            last ? "font-medium text-brand-700" : "text-ink-500"
-                          }`}
-                        >
-                          {step.detail}
-                        </p>
+                        <p className="mt-0.5 text-sm text-ink-500">{step.detail}</p>
                       </div>
                     </li>
                   );
                 })}
               </ol>
 
-              {/* security footer */}
-              <div className="mt-7 flex items-center gap-2.5 rounded-2xl bg-ink-50/70 px-4 py-3">
-                <Lock className="h-4.5 w-4.5 shrink-0 text-brand-700" />
-                <p className="text-[13px] leading-snug text-ink-600">
-                  End-to-end encrypted records · OTP-secured access · Verified doctors only
-                </p>
+              {/* outcome */}
+              <div className="mt-3 flex items-center justify-between gap-3 rounded-2xl bg-brand-700 px-4 py-3.5 text-white">
+                <span className="flex items-center gap-2.5">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/15">
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
+                  </span>
+                  <span className="text-sm font-semibold">Hospitalisation avoided</span>
+                </span>
+                <span className="font-display text-sm font-bold">₹84,000 saved</span>
+              </div>
+
+              {/* trust */}
+              <div className="mt-4 flex items-center gap-2 text-[13px] text-ink-400">
+                <Lock className="h-4 w-4 shrink-0 text-brand-600" />
+                Encrypted records · OTP-secured access · Verified doctors only
               </div>
             </div>
           </div>
