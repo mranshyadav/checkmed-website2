@@ -21,7 +21,7 @@ export default function CTABand({ title, body }: CTABandProps) {
             <p className="relative mx-auto mt-4 max-w-xl text-lg text-brand-50/90">{body}</p>
             <div className="relative mt-8">
               <Link
-                href="/company#contact"
+                href="/company/contact"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-brand-800 transition-all hover:-translate-y-0.5 hover:bg-brand-50"
               >
                 Book a demo

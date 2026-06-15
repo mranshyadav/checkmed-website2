@@ -25,20 +25,28 @@ fast first load.
 
 ## Site structure
 
-A multi-page architecture. The shared `Navbar` (mega menus) and `Footer` live in
-the root layout; every submenu item deep-links to an anchored section on its page
-(e.g. `/services#pharmacy`), with smooth scrolling and a fixed-header offset.
+A multi-page architecture where **every menu item is its own page**. The shared
+`Navbar` (mega menus) and `Footer` live in the root layout. Top-level menu names
+(Solutions, Services, Products, Resources, Company) **open their menu only** — they
+don't navigate; each submenu item links to a dedicated route.
 
-| Route | Sections |
+All section/item content lives in one source of truth (`src/lib/content.tsx`,
+plus richer datasets in `src/lib/pageData.tsx`). The five `[slug]` routes
+generate every page statically (`generateStaticParams`) through one shared
+`DetailPage` template, so the pages stay consistent.
+
+| Route | Pages |
 | --- | --- |
-| `/` | Hero, ecosystem strip, the IPD problem, how it works, clients, testimonials, contact |
-| `/solutions` | `#businesses`, `#insurance`, `#healthcare-partners` (each with anchored sub-blocks), partners, outcomes |
-| `/services` | `#corporate` & `#individual` with per-service anchors (`#opd-benefits`, `#teleconsultation`, `#pharmacy`…) |
-| `/products` | `#user-dashboard` (web + iOS/Android), `#business-portal`, `#vendor-portal`, `#control-panel` |
-| `/resources` | `#blogs`, `#case-studies`, `#whitepapers`, `#faqs` |
-| `/company` | `#about`, `#leadership`, `#careers`, `#media`, `#contact` |
+| `/` | Home (hero, ecosystem, problem, how-it-works, partners, outcomes, clients, testimonials, contact) |
+| `/solutions/[slug]` | employee-health-benefits, workforce-wellness, claims-reduction, risk-underwriting, provider-network, care-coordination |
+| `/services/[slug]` | opd-benefits, health-camps, teleconsultation, mental-wellness, doctor-consultations, lab-tests, pharmacy, health-records |
+| `/products/[slug]` | user-dashboard (web + iOS/Android), business-portal, vendor-portal, control-panel |
+| `/resources/[slug]` | blogs, case-studies, whitepapers, faqs |
+| `/company/[slug]` | about, leadership, careers, media, contact |
 
-The navbar highlights the active route and the active submenu item (route + hash).
+Each detail page shows a hero, its own content, a "More in {section}" sibling
+grid for in-section navigation, and a CTA. The navbar highlights the active
+section and the active submenu item.
 
 ### Design system
 
