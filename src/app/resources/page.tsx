@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import PageNav from "@/components/PageNav";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import CTABand from "@/components/CTABand";
@@ -88,9 +89,16 @@ const faqs = [
   },
 ];
 
+const pageSections = [
+  { id: "blogs", label: "Blogs" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "whitepapers", label: "Whitepapers" },
+  { id: "faqs", label: "FAQs" },
+];
+
 export default function ResourcesPage() {
   return (
-    <main>
+    <main className="[&_[id]]:scroll-mt-[8.5rem]">
       <PageHero
         eyebrow="Resources"
         title={
@@ -100,6 +108,8 @@ export default function ResourcesPage() {
         }
         description="Guides, evidence and answers — everything you need to make the case for prevention-first employee health."
       />
+
+      <PageNav sections={pageSections} />
 
       {/* Blogs */}
       <section id="blogs" className="py-20 lg:py-24">

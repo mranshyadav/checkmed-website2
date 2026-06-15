@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import PageNav from "@/components/PageNav";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import CTABand from "@/components/CTABand";
@@ -125,9 +126,14 @@ function ServiceGrid({ items }: { items: Service[] }) {
   );
 }
 
+const pageSections = [
+  { id: "corporate", label: "Corporate Services" },
+  { id: "individual", label: "Individual Services" },
+];
+
 export default function ServicesPage() {
   return (
-    <main>
+    <main className="[&_[id]]:scroll-mt-[8.5rem]">
       <PageHero
         eyebrow="Services"
         title={
@@ -137,6 +143,8 @@ export default function ServicesPage() {
         }
         description="From company-wide OPD benefits to a midnight teleconsult for your family, CheckMed covers the full journey of staying well."
       />
+
+      <PageNav sections={pageSections} />
 
       <section id="corporate" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">

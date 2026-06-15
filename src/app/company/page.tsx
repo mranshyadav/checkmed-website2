@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import PageNav from "@/components/PageNav";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import ContactCTA from "@/components/ContactCTA";
@@ -52,9 +53,17 @@ const press = [
   { outlet: "Benefits Weekly", date: "Nov 2025", headline: "Why insurers are betting on OPD-first platforms like CheckMed" },
 ];
 
+const pageSections = [
+  { id: "about", label: "About Us" },
+  { id: "leadership", label: "Leadership" },
+  { id: "careers", label: "Careers" },
+  { id: "media", label: "Media" },
+  { id: "contact", label: "Contact" },
+];
+
 export default function CompanyPage() {
   return (
-    <main>
+    <main className="[&_[id]]:scroll-mt-[8.5rem]">
       <PageHero
         eyebrow="Company"
         title={
@@ -64,6 +73,8 @@ export default function CompanyPage() {
         }
         description="CheckMed was founded on a simple observation: most hospitalisations are preventable — someone just has to catch them early."
       />
+
+      <PageNav sections={pageSections} />
 
       {/* About */}
       <section id="about" className="py-20 lg:py-24">

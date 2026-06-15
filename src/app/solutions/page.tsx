@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import PageNav from "@/components/PageNav";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import Partners from "@/components/Partners";
@@ -129,9 +130,17 @@ const groups = [
   },
 ];
 
+const pageSections = [
+  { id: "businesses", label: "Businesses" },
+  { id: "insurance", label: "Insurance" },
+  { id: "healthcare-partners", label: "Healthcare Partners" },
+  { id: "partners", label: "Network" },
+  { id: "outcomes", label: "Outcomes" },
+];
+
 export default function SolutionsPage() {
   return (
-    <main>
+    <main className="[&_[id]]:scroll-mt-[8.5rem]">
       <PageHero
         eyebrow="Solutions"
         title={
@@ -142,8 +151,9 @@ export default function SolutionsPage() {
         description="CheckMed aligns businesses, insurers and healthcare partners around a single goal — keeping people well and out of the hospital."
       />
 
+      <PageNav sections={pageSections} />
+
       {groups.map((g, gi) => {
-        const GroupIcon = g.icon;
         return (
           <section
             key={g.id}
@@ -151,17 +161,12 @@ export default function SolutionsPage() {
             className={gi % 2 === 0 ? "py-20 lg:py-24" : "bg-ink-50/40 py-20 lg:py-24"}
           >
             <div className="mx-auto max-w-7xl px-5 sm:px-8">
-              <div className="flex items-start gap-4">
-                <span className="hidden h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white sm:grid">
-                  <GroupIcon className="h-7 w-7" />
-                </span>
-                <SectionHeading
-                  align="left"
-                  eyebrow={g.eyebrow}
-                  title={g.title}
-                  description={g.description}
-                />
-              </div>
+              <SectionHeading
+                align="left"
+                eyebrow={g.eyebrow}
+                title={g.title}
+                description={g.description}
+              />
 
               <div className="mt-10 grid gap-5 lg:grid-cols-2">
                 {g.blocks.map((b, bi) => {

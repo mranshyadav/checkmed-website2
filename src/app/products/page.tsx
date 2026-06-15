@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import PageNav from "@/components/PageNav";
 import Reveal from "@/components/Reveal";
 import CTABand from "@/components/CTABand";
 import {
@@ -102,9 +103,16 @@ const products: Product[] = [
   },
 ];
 
+const pageSections = [
+  { id: "employer-dashboard", label: "Employer Dashboard" },
+  { id: "checkmed-app", label: "CheckMed App" },
+  { id: "provider-portal", label: "Provider Portal" },
+  { id: "insurer-analytics", label: "Insurer Analytics" },
+];
+
 export default function ProductsPage() {
   return (
-    <main>
+    <main className="[&_[id]]:scroll-mt-[8.5rem]">
       <PageHero
         eyebrow="Products"
         title={
@@ -114,6 +122,8 @@ export default function ProductsPage() {
         }
         description="Employers, employees, providers and insurers each get a purpose-built product — all running on the same care network and data spine."
       />
+
+      <PageNav sections={pageSections} />
 
       {products.map((p, i) => {
         const Icon = p.icon;
