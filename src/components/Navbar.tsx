@@ -89,6 +89,7 @@ const services: { label: string; items: Leaf[] }[] = [
 
 const products: Leaf[] = [
   { icon: AppWindow, title: "User Dashboard", desc: "Web portal + iOS & Android apps for corporate and retail users.", href: "/products#user-dashboard" },
+  { icon: Building, title: "Business Portal", desc: "For corporates who buy CheckMed — onboard staff, manage benefits & usage.", href: "/products#business-portal" },
   { icon: Hospital, title: "Vendor Portal", desc: "For partners who deliver care — services, bookings & payouts.", href: "/products#vendor-portal" },
   { icon: LayoutGrid, title: "Control Panel", desc: "CheckMed's command center to run services and operations.", href: "/products#control-panel" },
 ];
@@ -261,9 +262,9 @@ function MegaContent({ which, fns }: { which: MegaKey; fns: NavFns }) {
 
   if (which === "products") {
     return (
-      <div className="w-[760px] max-w-[calc(100vw-3rem)]">
+      <div className="w-[720px] max-w-[calc(100vw-3rem)]">
         <ColHeader label="Platform" />
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {products.map((it) => (
             <ProductCard key={it.title} item={it} fns={fns} />
           ))}

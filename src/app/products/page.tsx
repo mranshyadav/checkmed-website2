@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 import PageNav from "@/components/PageNav";
 import Reveal from "@/components/Reveal";
 import CTABand from "@/components/CTABand";
-import { AppWindow, Hospital, LayoutGrid, Check } from "@/lib/icons";
+import { AppWindow, Building, Hospital, LayoutGrid, Check } from "@/lib/icons";
 import type { ComponentType, SVGProps } from "react";
 
 export const metadata: Metadata = {
@@ -41,6 +41,24 @@ const products: Product[] = [
       { k: "Platforms", v: "Web · iOS · Android" },
       { k: "Users", v: "Corporate & retail" },
       { k: "Access", v: "OTP-secured" },
+    ],
+  },
+  {
+    id: "business-portal",
+    icon: Building,
+    kicker: "For corporates & HR teams",
+    title: "Business Portal",
+    desc: "The admin workspace for companies that offer CheckMed to their people — onboard employees, configure benefits, and track utilisation and wellbeing in real time.",
+    features: [
+      "Bulk onboarding & employee management",
+      "Configure benefit plans & eligibility",
+      "Live utilisation, engagement & wellbeing dashboards",
+      "Invoices, reports & exportable insights",
+    ],
+    stats: [
+      { k: "Roll-out", v: "Days, not months" },
+      { k: "Visibility", v: "Real-time" },
+      { k: "Coverage", v: "Single or multi-site" },
     ],
   },
   {
@@ -83,6 +101,7 @@ const products: Product[] = [
 
 const pageSections = [
   { id: "user-dashboard", label: "User Dashboard" },
+  { id: "business-portal", label: "Business Portal" },
   { id: "vendor-portal", label: "Vendor Portal" },
   { id: "control-panel", label: "Control Panel" },
 ];
@@ -94,10 +113,10 @@ export default function ProductsPage() {
         eyebrow="Products"
         title={
           <>
-            One platform, <span className="text-gradient">three connected products</span>.
+            One platform, <span className="text-gradient">four connected portals</span>.
           </>
         }
-        description="Employees, partners and the CheckMed team each get a purpose-built portal — all running on the same care network and data spine."
+        description="Employees, employers, partners and the CheckMed team each get a purpose-built portal — all running on the same care network and data spine."
       />
 
       <PageNav sections={pageSections} />
