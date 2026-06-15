@@ -11,7 +11,6 @@ import {
   Stethoscope,
   Calendar,
   Video,
-  Brain,
   Flask,
   Pill,
   FileText,
@@ -22,6 +21,8 @@ import {
   LayoutGrid,
   Briefcase,
   Mail,
+  Phone,
+  Home,
 } from "@/lib/icons";
 
 export type Ico = ComponentType<SVGProps<SVGSVGElement>>;
@@ -34,6 +35,10 @@ export type Item = {
   group?: string;
   intro?: string;
   points?: string[];
+  // services extras
+  modes?: { icon: Ico; title: string; desc: string }[];
+  steps?: { title: string; desc: string }[];
+  conditions?: string[];
   // products extras
   kicker?: string;
   platforms?: string[];
@@ -47,7 +52,7 @@ export type Section = {
   label: string;
   base: string;
   tagline: string;
-  layout: "groups" | "cards" | "resources" | "list";
+  layout: "groups" | "grid" | "cards" | "resources" | "list";
   groups?: { label: string; icon?: Ico }[];
   featured?: { tag: string; title: string; desc: string; href: string };
   items: Item[];
@@ -162,81 +167,128 @@ export const sections: Section[] = [
     key: "services",
     label: "Services",
     base: "/services",
-    tagline: "Cashless, coordinated care — corporate and retail.",
-    layout: "groups",
-    groups: [{ label: "Corporate Services" }, { label: "Individual Services" }],
+    tagline: "Care your way — consult, test, treat and manage.",
+    layout: "grid",
     items: [
       {
-        slug: "opd-benefits",
-        title: "OPD Benefits",
-        desc: "Cashless in-clinic consults",
+        slug: "consultation",
+        title: "Consultation",
+        desc: "Online, in-person & teleconsultation",
         icon: Stethoscope,
-        group: "Corporate Services",
-        intro: "Cashless in-clinic consults across a curated network of doctors and clinics.",
-        points: ["Cashless at network clinics", "Specialist & GP coverage", "Real-time benefit tracking", "Coverage for dependants"],
+        intro:
+          "See a doctor your way — a scheduled video appointment, a physical clinic visit, or an instant teleconsult. Whatever the mode, the same secure record and e-prescription follow you.",
+        modes: [
+          { icon: Video, title: "Online consultation", desc: "Book a scheduled video appointment with the GP or specialist of your choice, from anywhere." },
+          { icon: Stethoscope, title: "In-person consultation", desc: "Visit a doctor at a clinic in our network for a hands-on examination and physical care." },
+          { icon: Phone, title: "Teleconsultation", desc: "Need a doctor now? Connect on demand over audio or chat — 24/7, usually within minutes." },
+        ],
+        points: [
+          "GPs and specialists across every major field",
+          "Digital e-prescription on every consult",
+          "Free follow-ups within the care window",
+          "One-tap referrals to labs, pharmacy & specialists",
+          "Notes saved to your health record",
+          "Available for employees and their families",
+        ],
+        steps: [
+          { title: "Choose your mode", desc: "Online, in-person, or an instant teleconsult." },
+          { title: "Pick a doctor / connect", desc: "Select a specialist and slot, or get matched on demand." },
+          { title: "Consult", desc: "Talk to the doctor by video, in clinic, or over audio/chat." },
+          { title: "Prescription & follow-up", desc: "Get an e-prescription, referrals and a follow-up plan." },
+        ],
+      },
+      {
+        slug: "lab-tests",
+        title: "Lab Tests",
+        desc: "Home visit or centre visit",
+        icon: Flask,
+        intro:
+          "Book individual tests or full-body packages and choose how you're sampled — a free home visit or a walk-in at a partner centre. Same accredited labs, same accuracy, with digital doctor-reviewed reports.",
+        modes: [
+          { icon: Home, title: "Home visit", desc: "A trained phlebotomist collects your sample at home, free of charge, in a slot you choose." },
+          { icon: Building, title: "Centre visit", desc: "Walk in to a nearby NABL-accredited partner lab for collection and a faster turnaround." },
+        ],
+        points: [
+          "NABL-accredited partner labs",
+          "Free home sample collection",
+          "Individual tests & full-body packages",
+          "Digital reports in-app, often within 24 hours",
+          "Doctor-reviewed results with clear next steps",
+          "Family profiles and full test history",
+        ],
+        steps: [
+          { title: "Choose tests", desc: "Pick a single test or a full-body package." },
+          { title: "Home or centre", desc: "Select a free home visit or a partner-centre slot." },
+          { title: "Sample collected", desc: "By a certified phlebotomist at home or at the centre." },
+          { title: "Reports & review", desc: "Digital reports in-app, reviewed by a doctor." },
+        ],
+      },
+      {
+        slug: "pharmacy",
+        title: "Pharmacy",
+        desc: "Genuine medicines, delivered",
+        icon: Pill,
+        intro:
+          "Get prescribed medicines delivered to your door — genuine, verified and trackable — with automatic refills so ongoing treatment never lapses.",
+        points: [
+          "Doorstep delivery across serviceable areas",
+          "Prescription pulled automatically from your consult",
+          "Genuine, verified medicines only",
+          "Automatic refill reminders & subscriptions",
+          "Live order tracking end to end",
+          "Chronic-care packs for long-term therapy",
+        ],
+        steps: [
+          { title: "Share prescription", desc: "Auto-pulled from your CheckMed consult, or upload one." },
+          { title: "Confirm order", desc: "Review medicines, quantities and the delivery address." },
+          { title: "Doorstep delivery", desc: "Genuine medicines delivered and tracked to your door." },
+          { title: "Auto-refills", desc: "Reminders and subscriptions keep ongoing therapy on time." },
+        ],
       },
       {
         slug: "health-camps",
         title: "Health Check-up Camps",
-        desc: "On-site screenings & drives",
+        desc: "On-site preventive screenings",
         icon: Calendar,
-        group: "Corporate Services",
-        intro: "On-site screenings and annual check-up drives, organised end to end.",
-        points: ["Full-body & seasonal screenings", "On-site logistics handled", "Digital reports for everyone", "Risk follow-up built in"],
+        intro:
+          "Bring preventive care on-site. We run end-to-end health camps for your workforce — vitals, screenings and doctor consults — with a digital report for every employee and aggregate wellbeing insights for HR.",
+        points: [
+          "On-site setup and logistics handled for you",
+          "Full-body & seasonal screening packages",
+          "Vitals, BMI and on-site doctor consults",
+          "A private digital report for every employee",
+          "Aggregate, anonymised wellbeing insights for HR",
+          "Flagged risks routed straight into ongoing care",
+        ],
+        steps: [
+          { title: "Plan the camp", desc: "Pick packages, date and locations; we handle logistics." },
+          { title: "Screening day", desc: "On-site vitals, tests and doctor consults for your team." },
+          { title: "Digital reports", desc: "Each employee gets a private report in the app." },
+          { title: "Follow-up", desc: "At-risk employees are guided into consults and care." },
+        ],
       },
       {
-        slug: "teleconsultation",
-        title: "Teleconsultation",
-        desc: "24/7 doctors for your team",
-        icon: Video,
-        group: "Corporate Services",
-        intro: "A qualified doctor on video for your team, any hour of the day.",
-        points: ["Avg. 4 minutes to connect", "General & specialist", "e-Prescriptions included", "Unlimited follow-ups"],
-      },
-      {
-        slug: "mental-wellness",
-        title: "Mental Wellness (EAP)",
-        desc: "Confidential counselling",
-        icon: Brain,
-        group: "Corporate Services",
-        intro: "Confidential counselling and support for stress, sleep and burnout.",
-        points: ["1-on-1 sessions with counsellors", "100% confidential", "Manager sensitisation workshops", "Crisis support"],
-      },
-      {
-        slug: "doctor-consultations",
-        title: "Doctor Consultations",
-        desc: "Talk to a doctor in minutes",
-        icon: Video,
-        group: "Individual Services",
-        intro: "Talk to a doctor in minutes — by video, audio or chat.",
-        points: ["24/7 general physicians", "Specialist appointments", "Digital prescriptions", "Follow-up reminders"],
-      },
-      {
-        slug: "lab-tests",
-        title: "Lab Tests at Home",
-        desc: "Free sample collection",
-        icon: Flask,
-        group: "Individual Services",
-        intro: "Book tests and full-body packages with free home sample collection.",
-        points: ["Free home sample pickup", "NABL-grade partner labs", "Reports in the app", "Doctor-reviewed results"],
-      },
-      {
-        slug: "pharmacy",
-        title: "Pharmacy Delivery",
-        desc: "Medicines to your door",
-        icon: Pill,
-        group: "Individual Services",
-        intro: "Prescribed medicines delivered to your door, with refills on autopilot.",
-        points: ["Doorstep delivery", "Automatic refill reminders", "Genuine, verified medicines", "Chronic-care subscriptions"],
-      },
-      {
-        slug: "health-records",
-        title: "Health Records",
-        desc: "Secure, all in one place",
-        icon: FileText,
-        group: "Individual Services",
-        intro: "Every report, prescription and visit — in one secure, shareable place.",
-        points: ["Encrypted health locker", "Share securely with doctors", "Family profiles supported", "Timeline of every visit"],
+        slug: "disease-management",
+        title: "Disease Management",
+        desc: "Programs for chronic conditions",
+        icon: HeartPulse,
+        intro:
+          "Structured, ongoing programs for chronic conditions — pairing a dedicated care manager with monitoring, medication support and lifestyle coaching to keep conditions controlled and complications (and hospitalisations) away.",
+        conditions: ["Diabetes", "Hypertension", "Cardiac", "Thyroid", "Asthma & COPD", "Obesity / weight", "Mental health"],
+        points: [
+          "A dedicated care manager for each member",
+          "Regular monitoring and scheduled check-ins",
+          "Medication management & refill support",
+          "Personalised nutrition & lifestyle coaching",
+          "Periodic lab tracking of key markers",
+          "Fast escalation to specialists when needed",
+        ],
+        steps: [
+          { title: "Enrol & assess", desc: "A baseline assessment and a clear picture of the condition." },
+          { title: "Personalised plan", desc: "A care plan with goals, medication and lifestyle steps." },
+          { title: "Monitor & coach", desc: "Regular check-ins and coaching from a dedicated care manager." },
+          { title: "Track outcomes", desc: "Keep markers in range and prevent costly complications." },
+        ],
       },
     ],
   },

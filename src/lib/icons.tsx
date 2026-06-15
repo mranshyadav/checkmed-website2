@@ -174,6 +174,16 @@ export function Clock(props: IconProps) {
   );
 }
 
+export function Home(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 11.5 12 4l8 7.5" />
+      <path d="M5.5 10.2V19a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5v-8.8" />
+      <path d="M10 20.5v-5h4v5" />
+    </svg>
+  );
+}
+
 export function MapPin(props: IconProps) {
   return (
     <svg {...base} {...props}>

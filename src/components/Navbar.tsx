@@ -119,6 +119,20 @@ function MegaContent({ sectionKey, fns }: { sectionKey: SectionKey; fns: Fns }) 
     );
   }
 
+  if (section.layout === "grid") {
+    return (
+      <div className="w-[680px] max-w-[calc(100vw-3rem)]">
+        <ColHeader label={section.label} />
+        <div className="grid grid-cols-2 gap-1">
+          {section.items.map((it) => (
+            <LeafLink key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
+          ))}
+        </div>
+        <MegaFooter note={section.tagline} fns={fns} />
+      </div>
+    );
+  }
+
   if (section.layout === "cards") {
     return (
       <div className="w-[720px] max-w-[calc(100vw-3rem)]">

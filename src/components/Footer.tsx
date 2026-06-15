@@ -5,11 +5,11 @@ const columns = [
   {
     title: "Services",
     links: [
-      { label: "Teleconsultation", href: "/services/teleconsultation" },
-      { label: "OPD Benefits", href: "/services/opd-benefits" },
-      { label: "Lab Tests at Home", href: "/services/lab-tests" },
-      { label: "Pharmacy Delivery", href: "/services/pharmacy" },
+      { label: "Consultation", href: "/services/consultation" },
+      { label: "Lab Tests", href: "/services/lab-tests" },
+      { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Health Check-up Camps", href: "/services/health-camps" },
+      { label: "Disease Management", href: "/services/disease-management" },
     ],
   },
   {
