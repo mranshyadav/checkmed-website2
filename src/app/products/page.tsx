@@ -3,19 +3,13 @@ import PageHero from "@/components/PageHero";
 import PageNav from "@/components/PageNav";
 import Reveal from "@/components/Reveal";
 import CTABand from "@/components/CTABand";
-import {
-  LayoutGrid,
-  AppWindow,
-  Hospital,
-  ChartDown,
-  Check,
-} from "@/lib/icons";
+import { AppWindow, Hospital, LayoutGrid, Check } from "@/lib/icons";
 import type { ComponentType, SVGProps } from "react";
 
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "The CheckMed platform — employer dashboard, employee app, provider portal and insurer analytics, all connected.",
+    "The CheckMed platform — the User Dashboard (web + iOS & Android apps), the Vendor Portal for care partners, and the Control Panel that powers CheckMed operations.",
 };
 
 type Product = {
@@ -24,90 +18,73 @@ type Product = {
   kicker: string;
   title: string;
   desc: string;
+  platforms?: string[];
   features: string[];
   stats: { k: string; v: string }[];
 };
 
 const products: Product[] = [
   {
-    id: "employer-dashboard",
-    icon: LayoutGrid,
-    kicker: "For HR & Finance",
-    title: "Employer Dashboard",
-    desc: "Roll out benefits, track utilisation and prove ROI — without spreadsheets or vendor chasing.",
-    features: [
-      "One-click employee onboarding & offboarding",
-      "Live utilisation, engagement & wellbeing views",
-      "Budget controls and benefit configuration",
-      "Exportable reports for leadership & insurers",
-    ],
-    stats: [
-      { k: "Roll-out", v: "Days, not months" },
-      { k: "Visibility", v: "Real-time" },
-      { k: "Locations", v: "Unlimited" },
-    ],
-  },
-  {
-    id: "checkmed-app",
+    id: "user-dashboard",
     icon: AppWindow,
-    kicker: "For Employees & Families",
-    title: "CheckMed App",
-    desc: "Every benefit in one place — a doctor in minutes, tests at home, medicines at the door and records that follow you.",
+    kicker: "For employees & individuals",
+    title: "User Dashboard",
+    desc: "One portal for every end user — corporate employees and retail members alike — to reach care in a tap. Available on the web and as native iOS and Android apps.",
+    platforms: ["Web", "iOS", "Android"],
     features: [
-      "OTP-based secure login",
+      "Single sign-in for corporate & retail users",
       "Book teleconsults, OPD visits, labs & pharmacy",
       "Family profiles for dependants",
       "Encrypted health records & prescriptions",
     ],
     stats: [
-      { k: "Doctor access", v: "24/7" },
-      { k: "To connect", v: "~4 min" },
-      { k: "Out-of-pocket", v: "₹0 in-network" },
+      { k: "Platforms", v: "Web · iOS · Android" },
+      { k: "Users", v: "Corporate & retail" },
+      { k: "Access", v: "OTP-secured" },
     ],
   },
   {
-    id: "provider-portal",
+    id: "vendor-portal",
     icon: Hospital,
-    kicker: "For Hospitals, Clinics & Labs",
-    title: "Provider Portal",
-    desc: "A steady stream of coordinated patients with the admin handled — scheduling, records and settlements in one flow.",
+    kicker: "For service partners",
+    title: "Vendor Portal",
+    desc: "The workspace for our partner network — hospitals, clinics, labs and pharmacies — to receive patients, manage their services and get paid, all in one place.",
     features: [
-      "Unified appointment calendar",
+      "Receive a steady, qualified patient flow",
+      "Manage services, availability & bookings",
       "Digital case notes & shared records",
-      "Automated claims & settlement tracking",
-      "Network performance insights",
+      "Track claims and on-time settlements",
     ],
     stats: [
+      { k: "Partners", v: "Hospitals · Labs · Pharmacies" },
       { k: "Settlements", v: "On time" },
-      { k: "Paperwork", v: "Near zero" },
-      { k: "Patient flow", v: "Qualified" },
+      { k: "Workflow", v: "Fully digital" },
     ],
   },
   {
-    id: "insurer-analytics",
-    icon: ChartDown,
-    kicker: "For Insurers & TPAs",
-    title: "Insurer Analytics",
-    desc: "See risk forming before it becomes a claim — population health signals straight from screenings and care activity.",
+    id: "control-panel",
+    icon: LayoutGrid,
+    kicker: "For the CheckMed team",
+    title: "Control Panel",
+    desc: "CheckMed's internal command center — where our team configures services, oversees the partner network and keeps every solution running smoothly.",
     features: [
-      "Cohort risk profiles & trends",
-      "Avoidable-claim flags and savings tracking",
-      "Engagement-based renewal insights",
-      "API access for underwriting systems",
+      "Configure services, plans & solutions",
+      "Onboard corporates, vendors & members",
+      "Monitor operations & SLAs in real time",
+      "Role-based access with a full audit trail",
     ],
     stats: [
-      { k: "IPD claims", v: "-40% target" },
-      { k: "Signals", v: "Screening-led" },
-      { k: "Delivery", v: "Dashboard + API" },
+      { k: "Scope", v: "End-to-end ops" },
+      { k: "Control", v: "Role-based" },
+      { k: "Visibility", v: "Real-time" },
     ],
   },
 ];
 
 const pageSections = [
-  { id: "employer-dashboard", label: "Employer Dashboard" },
-  { id: "checkmed-app", label: "CheckMed App" },
-  { id: "provider-portal", label: "Provider Portal" },
-  { id: "insurer-analytics", label: "Insurer Analytics" },
+  { id: "user-dashboard", label: "User Dashboard" },
+  { id: "vendor-portal", label: "Vendor Portal" },
+  { id: "control-panel", label: "Control Panel" },
 ];
 
 export default function ProductsPage() {
@@ -117,10 +94,10 @@ export default function ProductsPage() {
         eyebrow="Products"
         title={
           <>
-            One platform, <span className="text-gradient">four connected products</span>.
+            One platform, <span className="text-gradient">three connected products</span>.
           </>
         }
-        description="Employers, employees, providers and insurers each get a purpose-built product — all running on the same care network and data spine."
+        description="Employees, partners and the CheckMed team each get a purpose-built portal — all running on the same care network and data spine."
       />
 
       <PageNav sections={pageSections} />
@@ -165,7 +142,21 @@ export default function ProductsPage() {
                   <span className="relative grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
                     <Icon className="h-8 w-8" />
                   </span>
-                  <div className="relative mt-7 space-y-3">
+
+                  {p.platforms ? (
+                    <div className="relative mt-6 flex flex-wrap gap-2">
+                      {p.platforms.map((pl) => (
+                        <span
+                          key={pl}
+                          className="rounded-full border border-white/70 bg-white/80 px-3 py-1 text-xs font-semibold text-brand-700 backdrop-blur"
+                        >
+                          {pl}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  <div className={`relative space-y-3 ${p.platforms ? "mt-4" : "mt-7"}`}>
                     {p.stats.map((s) => (
                       <div
                         key={s.k}
@@ -185,7 +176,7 @@ export default function ProductsPage() {
 
       <CTABand
         title="See the platform in action"
-        body="A 30-minute walkthrough of the dashboard, app and analytics — tailored to your role."
+        body="A 30-minute walkthrough of the dashboard, vendor portal and control panel — tailored to your role."
       />
     </main>
   );

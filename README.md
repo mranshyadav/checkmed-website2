@@ -34,7 +34,7 @@ the root layout; every submenu item deep-links to an anchored section on its pag
 | `/` | Hero, ecosystem strip, the IPD problem, how it works, clients, testimonials, contact |
 | `/solutions` | `#businesses`, `#insurance`, `#healthcare-partners` (each with anchored sub-blocks), partners, outcomes |
 | `/services` | `#corporate` & `#individual` with per-service anchors (`#opd-benefits`, `#teleconsultation`, `#pharmacy`…) |
-| `/products` | `#employer-dashboard`, `#checkmed-app`, `#provider-portal`, `#insurer-analytics` |
+| `/products` | `#user-dashboard` (web + iOS/Android), `#vendor-portal`, `#control-panel` |
 | `/resources` | `#blogs`, `#case-studies`, `#whitepapers`, `#faqs` |
 | `/company` | `#about`, `#leadership`, `#careers`, `#media`, `#contact` |
 

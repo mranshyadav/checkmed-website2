@@ -88,10 +88,9 @@ const services: { label: string; items: Leaf[] }[] = [
 ];
 
 const products: Leaf[] = [
-  { icon: LayoutGrid, title: "Employer Dashboard", desc: "Manage benefits, track utilisation & wellbeing.", href: "/products#employer-dashboard" },
-  { icon: AppWindow, title: "CheckMed App", desc: "Care, bookings & records for every employee.", href: "/products#checkmed-app" },
-  { icon: Hospital, title: "Provider Portal", desc: "Appointments, workflow & settlements.", href: "/products#provider-portal" },
-  { icon: ChartDown, title: "Insurer Analytics", desc: "Risk signals & claims insights.", href: "/products#insurer-analytics" },
+  { icon: AppWindow, title: "User Dashboard", desc: "Web portal + iOS & Android apps for corporate and retail users.", href: "/products#user-dashboard" },
+  { icon: Hospital, title: "Vendor Portal", desc: "For partners who deliver care — services, bookings & payouts.", href: "/products#vendor-portal" },
+  { icon: LayoutGrid, title: "Control Panel", desc: "CheckMed's command center to run services and operations.", href: "/products#control-panel" },
 ];
 
 const resources: { items: Leaf[]; featured: { tag: string; title: string; desc: string; href: string } } = {
@@ -262,9 +261,9 @@ function MegaContent({ which, fns }: { which: MegaKey; fns: NavFns }) {
 
   if (which === "products") {
     return (
-      <div className="w-[720px] max-w-[calc(100vw-3rem)]">
+      <div className="w-[760px] max-w-[calc(100vw-3rem)]">
         <ColHeader label="Platform" />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {products.map((it) => (
             <ProductCard key={it.title} item={it} fns={fns} />
           ))}
