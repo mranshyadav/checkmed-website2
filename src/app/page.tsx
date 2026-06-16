@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import EcosystemStrip from "@/components/EcosystemStrip";
 import Problem from "@/components/Problem";
 import HowItWorks from "@/components/HowItWorks";
+import { ServicesShowcase, ProductsShowcase, SecuritySection } from "@/components/HomeSections";
 import Partners from "@/components/Partners";
 import Outcomes from "@/components/Outcomes";
 import Clients from "@/components/Clients";
@@ -15,8 +16,11 @@ export default function Home() {
       <EcosystemStrip />
       <Problem />
       <HowItWorks />
-      <Partners />
+      <ServicesShowcase />
+      <ProductsShowcase />
+      <SecuritySection />
       <Outcomes />
+      <Partners />
       <Clients />
       <Testimonials />
       <ContactCTA />

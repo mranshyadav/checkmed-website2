@@ -2,8 +2,10 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import CTABand from "./CTABand";
 import Reveal from "./Reveal";
+import { BenefitsBand, MetricsBand, FAQBand, ProofBand } from "./DetailSections";
 import { ArrowRight, Check } from "@/lib/icons";
 import { getSection, itemHref, type SectionKey } from "@/lib/content";
+import { sectionContent } from "@/lib/pageContent";
 
 export function Highlights({ title = "What's included", points }: { title?: string; points: string[] }) {
   return (
@@ -47,6 +49,7 @@ export default function DetailPage({
   const siblings = section.items.filter((i) => i.slug !== slug);
   const Icon = item.icon;
   const chip = item.kicker ?? item.group ?? null;
+  const sc = sectionContent[sectionKey];
 
   return (
     <main>
@@ -110,6 +113,16 @@ export default function DetailPage({
       <div id="details" className="scroll-mt-24">
         {children}
       </div>
+
+      {/* Premium marketing bands (offering pages) */}
+      {sc ? (
+        <>
+          <BenefitsBand heading={sc.whyHeading} body={sc.whyBody} benefits={sc.benefits} />
+          <MetricsBand metrics={sc.metrics} />
+          <FAQBand faqs={sc.faqs} />
+          <ProofBand proof={sc.proof} />
+        </>
+      ) : null}
 
       {/* Explore more in this section */}
       <section className="border-t border-ink-100 bg-ink-50/40 py-16 lg:py-20">
