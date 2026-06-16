@@ -39,7 +39,7 @@ generate every page statically (`generateStaticParams`) through one shared
 | --- | --- |
 | `/` | Home (hero, ecosystem, problem, how-it-works, partners, outcomes, clients, testimonials, contact) |
 | `/solutions/[slug]` | employee-health-benefits, workforce-wellness, claims-reduction, risk-underwriting, provider-network, care-coordination |
-| `/services/[slug]` | consultation (online / in-person / teleconsultation), lab-tests (home + centre visit), pharmacy, health-camps, disease-management |
+| `/services/[slug]` | consultation (online / in-person / teleconsultation), lab-tests (home + centre visit), pharmacy, health-camps, medical-room, disease-management |
 | `/products/[slug]` | user-dashboard (web + iOS/Android), business-portal, vendor-portal, control-panel |
 | `/resources/[slug]` | blogs, case-studies, whitepapers, faqs |
 | `/company/[slug]` | about, leadership, careers, media, contact |

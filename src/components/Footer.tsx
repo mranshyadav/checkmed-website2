@@ -9,6 +9,7 @@ const columns = [
       { label: "Lab Tests", href: "/services/lab-tests" },
       { label: "Pharmacy", href: "/services/pharmacy" },
       { label: "Health Check-up Camps", href: "/services/health-camps" },
+      { label: "Medical Room", href: "/services/medical-room" },
       { label: "Disease Management", href: "/services/disease-management" },
     ],
   },

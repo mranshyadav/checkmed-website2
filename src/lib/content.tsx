@@ -268,6 +268,28 @@ export const sections: Section[] = [
         ],
       },
       {
+        slug: "medical-room",
+        title: "Medical Room",
+        desc: "A staffed clinic at your workplace",
+        icon: Hospital,
+        intro:
+          "Set up a staffed medical room — an on-site clinic for first aid, daily OPD, vitals and emergencies — so help is steps away for your team, and you stay compliant with Occupational Health Centre (OHC) norms.",
+        points: [
+          "A dedicated, equipped medical room at your site",
+          "Staffed by trained nurses, with scheduled doctor visits",
+          "First aid, emergency response & day-to-day OPD",
+          "On-the-spot vitals — BP, sugar, temperature & more",
+          "Teleconsult backup for specialists in minutes",
+          "OHC-compliant records, incident logs & health MIS",
+        ],
+        steps: [
+          { title: "Assess & set up", desc: "We design and equip the room to your site, headcount and shifts." },
+          { title: "Staff & stock", desc: "Trained nurses, doctor-visit schedules and first-aid supplies in place." },
+          { title: "Daily care", desc: "First aid, OPD, vitals and emergency response — on site, every shift." },
+          { title: "Report & comply", desc: "Incident logs, health MIS and statutory records, with risk routed into care." },
+        ],
+      },
+      {
         slug: "disease-management",
         title: "Disease Management",
         desc: "Programs for chronic conditions",
