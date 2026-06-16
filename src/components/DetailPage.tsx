@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import PageHero from "./PageHero";
 import CTABand from "./CTABand";
 import Reveal from "./Reveal";
 import { ArrowRight, Check } from "@/lib/icons";
@@ -46,28 +45,81 @@ export default function DetailPage({
   const section = getSection(sectionKey);
   const item = section.items.find((i) => i.slug === slug)!;
   const siblings = section.items.filter((i) => i.slug !== slug);
+  const Icon = item.icon;
+  const chip = item.kicker ?? item.group ?? null;
 
   return (
     <main>
-      <PageHero
-        eyebrow={item.kicker ?? (item.group ? `${section.label} · ${item.group}` : section.label)}
-        title={item.title}
-        description={item.intro ?? item.desc}
-      />
+      {/* ---- Header ---- */}
+      <section className="relative overflow-hidden border-b border-ink-100 bg-gradient-to-b from-brand-50 via-brand-50/30 to-white">
+        <div className="pointer-events-none absolute inset-0 bg-grid opacity-70 [mask-image:radial-gradient(80%_70%_at_25%_0%,black,transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-radial-glow" />
+        <div className="pointer-events-none absolute -right-10 top-16 hidden lg:block">
+          <Icon className="h-80 w-80 text-brand-200/60" strokeWidth={1.25} />
+        </div>
 
-      {children}
+        <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-28 sm:px-8 lg:pb-20 lg:pt-36">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-sm">
+            <Link href="/" className="text-ink-400 transition-colors hover:text-brand-700">
+              Home
+            </Link>
+            <span className="text-ink-300">/</span>
+            <span className="text-ink-400">{section.label}</span>
+            <span className="text-ink-300">/</span>
+            <span className="font-semibold text-brand-700">{item.title}</span>
+          </nav>
+
+          <div className="mt-8 max-w-3xl">
+            <span className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white">
+              <Icon className="h-8 w-8" />
+            </span>
+
+            {chip ? (
+              <span className="mt-6 inline-flex items-center rounded-full border border-brand-200 bg-white/70 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700 backdrop-blur">
+                {chip}
+              </span>
+            ) : null}
+
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink-900 sm:text-5xl lg:text-[3.4rem]">
+              {item.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-600">
+              {item.intro ?? item.desc}
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/company/contact"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-700 px-7 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-brand-800"
+              >
+                Book a demo
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <a
+                href="#details"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-ink-200 bg-white px-7 py-3.5 text-base font-semibold text-ink-800 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-700"
+              >
+                Explore details
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="details" className="scroll-mt-24">
+        {children}
+      </div>
 
       {/* Explore more in this section */}
       <section className="border-t border-ink-100 bg-ink-50/40 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="flex items-end justify-between gap-4">
-            <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
-              More in {section.label}
-            </h2>
-          </div>
+          <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+            More in {section.label}
+          </h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {siblings.map((s, i) => {
-              const Icon = s.icon;
+              const SibIcon = s.icon;
               return (
                 <Reveal key={s.slug} delay={(((i % 3) + 1) as 1 | 2 | 3)}>
                   <Link
@@ -75,7 +127,7 @@ export default function DetailPage({
                     className="group flex h-full flex-col rounded-3xl border border-ink-100 bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand-200"
                   >
                     <span className="grid h-11 w-11 place-items-center rounded-2xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
-                      <Icon className="h-5.5 w-5.5" />
+                      <SibIcon className="h-5.5 w-5.5" />
                     </span>
                     <h3 className="mt-4 font-display text-lg font-bold text-ink-900">{s.title}</h3>
                     <p className="mt-1 flex-1 text-sm leading-relaxed text-ink-500">{s.desc}</p>
