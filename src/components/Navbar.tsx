@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CheckMedWordmark, Menu, Close, ChevronDown, ArrowRight } from "@/lib/icons";
+import { CheckMedWordmark, Menu, Close, ChevronDown, ArrowRight, Spark } from "@/lib/icons";
 import { sections, itemHref, type Item, type SectionKey } from "@/lib/content";
 
-type Leaf = { icon: Item["icon"]; title: string; href: string };
+type Leaf = { icon: Item["icon"]; title: string; desc: string; href: string };
 const leafOf = (key: SectionKey, it: Item): Leaf => ({
   icon: it.icon,
   title: it.title,
+  desc: it.desc,
   href: itemHref(key, it.slug),
 });
 
@@ -22,42 +23,89 @@ function LeafLink({ item, fns }: { item: Leaf; fns: Fns }) {
     <Link
       href={item.href}
       onClick={fns.onNavigate}
-      className={`group/li flex items-center gap-2.5 rounded-xl px-3 py-2 transition-colors ${
-        active ? "bg-brand-50 text-brand-700" : "text-ink-700 hover:bg-ink-50 hover:text-brand-700"
+      className={`group/li flex items-start gap-3 rounded-2xl p-2.5 transition-colors ${
+        active ? "bg-brand-50" : "hover:bg-brand-50"
       }`}
     >
-      <Icon
-        className={`h-4.5 w-4.5 shrink-0 transition-colors ${
-          active ? "text-brand-600" : "text-ink-400 group-hover/li:text-brand-600"
+      <span
+        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-colors ${
+          active
+            ? "bg-brand-600 text-white"
+            : "bg-brand-50 text-brand-600 group-hover/li:bg-brand-600 group-hover/li:text-white"
         }`}
-      />
-      <span className="min-w-0 truncate text-sm font-medium">{item.title}</span>
+      >
+        <Icon className="h-5 w-5" />
+      </span>
+      <span className="min-w-0">
+        <span className={`block text-sm font-semibold ${active ? "text-brand-700" : "text-ink-900"}`}>
+          {item.title}
+        </span>
+        <span className="mt-0.5 block text-xs leading-relaxed text-ink-500">{item.desc}</span>
+      </span>
     </Link>
   );
 }
 
-function GroupLabel({ label }: { label: string }) {
+function ProductCard({ item, fns }: { item: Leaf; fns: Fns }) {
+  const Icon = item.icon;
+  const active = fns.isActive(item.href);
   return (
-    <p className="px-3 pb-1 pt-1.5 text-[11px] font-semibold uppercase tracking-wider text-ink-400">
-      {label}
-    </p>
+    <Link
+      href={item.href}
+      onClick={fns.onNavigate}
+      className={`group/card flex flex-col rounded-2xl border p-5 transition-all hover:-translate-y-0.5 ${
+        active ? "border-brand-300 bg-brand-50/60" : "border-ink-100 hover:border-brand-200 hover:bg-brand-50/40"
+      }`}
+    >
+      <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover/card:bg-brand-600 group-hover/card:text-white">
+        <Icon className="h-5.5 w-5.5" />
+      </span>
+      <span className="mt-4 text-sm font-bold text-ink-900">{item.title}</span>
+      <span className="mt-1 text-xs leading-relaxed text-ink-500">{item.desc}</span>
+      <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-700">
+        Explore <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/card:translate-x-0.5" />
+      </span>
+    </Link>
+  );
+}
+
+function ColHeader({ icon: Icon, label }: { icon?: Item["icon"]; label: string }) {
+  return (
+    <div className="mb-1 flex items-center gap-2 px-2.5">
+      {Icon ? <Icon className="h-4 w-4 text-brand-600" /> : null}
+      <span className="text-xs font-bold uppercase tracking-wider text-ink-400">{label}</span>
+    </div>
+  );
+}
+
+function MegaFooter({ note, fns }: { note: string; fns: Fns }) {
+  return (
+    <div className="mt-4 flex items-center justify-between gap-4 border-t border-ink-100 px-1 pt-3">
+      <span className="text-xs text-ink-400">{note}</span>
+      <Link
+        href="/company/contact"
+        onClick={fns.onNavigate}
+        className="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-800"
+      >
+        Talk to our team <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
+    </div>
   );
 }
 
 function MegaContent({ sectionKey, fns }: { sectionKey: SectionKey; fns: Fns }) {
   const section = sections.find((s) => s.key === sectionKey)!;
 
-  // Solutions — a few tidy, grouped columns
   if (section.layout === "groups") {
-    const cols = section.groups!.length;
-    const grid = cols >= 3 ? "grid-cols-3" : cols === 2 ? "grid-cols-2" : "grid-cols-1";
-    const width = cols >= 3 ? "w-[660px]" : cols === 2 ? "w-[460px]" : "w-[260px]";
+    const cols = section.groups?.length ?? 2;
+    const width = cols >= 3 ? "w-[820px]" : "w-[640px]";
+    const grid = cols >= 3 ? "grid-cols-3" : "grid-cols-2";
     return (
       <div className={`${width} max-w-[calc(100vw-3rem)]`}>
-        <div className={`grid ${grid} gap-x-2`}>
+        <div className={`grid ${grid} gap-x-6 gap-y-1`}>
           {section.groups!.map((g) => (
             <div key={g.label}>
-              <GroupLabel label={g.label} />
+              <ColHeader icon={g.icon} label={g.label} />
               {section.items
                 .filter((it) => it.group === g.label)
                 .map((it) => (
@@ -66,18 +114,70 @@ function MegaContent({ sectionKey, fns }: { sectionKey: SectionKey; fns: Fns }) 
             </div>
           ))}
         </div>
+        <MegaFooter note={section.tagline} fns={fns} />
       </div>
     );
   }
 
-  // Services · Products · Resources — one clean two-column list of links
-  return (
-    <div className="w-[440px] max-w-[calc(100vw-3rem)]">
-      <div className="grid grid-cols-2 gap-x-2">
-        {section.items.map((it) => (
-          <LeafLink key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
-        ))}
+  if (section.layout === "grid") {
+    return (
+      <div className="w-[680px] max-w-[calc(100vw-3rem)]">
+        <ColHeader label={section.label} />
+        <div className="grid grid-cols-2 gap-1">
+          {section.items.map((it) => (
+            <LeafLink key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
+          ))}
+        </div>
+        <MegaFooter note={section.tagline} fns={fns} />
       </div>
+    );
+  }
+
+  if (section.layout === "cards") {
+    return (
+      <div className="w-[720px] max-w-[calc(100vw-3rem)]">
+        <ColHeader label="Platform" />
+        <div className="grid grid-cols-2 gap-4">
+          {section.items.map((it) => (
+            <ProductCard key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
+          ))}
+        </div>
+        <MegaFooter note={section.tagline} fns={fns} />
+      </div>
+    );
+  }
+
+  // resources
+  return (
+    <div className="w-[860px] max-w-[calc(100vw-3rem)]">
+      <div className="grid grid-cols-[1.25fr_0.9fr] gap-6">
+        <div>
+          <ColHeader label="Resources" />
+          <div className="grid grid-cols-2 gap-1">
+            {section.items.map((it) => (
+              <LeafLink key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
+            ))}
+          </div>
+        </div>
+        {section.featured ? (
+          <Link
+            href={section.featured.href}
+            onClick={fns.onNavigate}
+            className="group/feat relative flex flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-ink-900 p-6 text-white"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+            <span className="relative inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-50">
+              <Spark className="h-3.5 w-3.5" /> {section.featured.tag}
+            </span>
+            <h4 className="relative mt-4 font-display text-lg font-bold leading-snug">{section.featured.title}</h4>
+            <p className="relative mt-1.5 text-sm text-brand-50/85">{section.featured.desc}</p>
+            <span className="relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
+              Read more <ArrowRight className="h-4 w-4 transition-transform group-hover/feat:translate-x-0.5" />
+            </span>
+          </Link>
+        ) : null}
+      </div>
+      <MegaFooter note={section.tagline} fns={fns} />
     </div>
   );
 }
@@ -178,7 +278,7 @@ export default function Navbar() {
                     onMouseEnter={cancelClose}
                     onMouseLeave={scheduleClose}
                   >
-                    <div className="animate-menu-in w-[244px] rounded-2xl border border-ink-100 bg-white p-2 shadow-[0_18px_44px_-24px_rgba(8,47,58,0.22)]">
+                    <div className="animate-menu-in w-[300px] rounded-[20px] border border-ink-100 bg-white p-2 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]">
                       {s.items.map((it) => (
                         <LeafLink key={it.slug} item={leafOf(s.key, it)} fns={fns} />
                       ))}
@@ -221,7 +321,7 @@ export default function Navbar() {
           >
             <div
               key={active}
-              className="animate-menu-in rounded-2xl border border-ink-100 bg-white p-2.5 shadow-[0_18px_44px_-24px_rgba(8,47,58,0.22)]"
+              className="animate-menu-in rounded-[20px] border border-ink-100 bg-white p-5 shadow-[0_24px_60px_-22px_rgba(8,47,58,0.28)]"
             >
               <MegaContent sectionKey={active} fns={fns} />
             </div>
