@@ -37,12 +37,14 @@ export default function DetailPage({
   children,
   hideCTA = false,
   cta,
+  facts,
 }: {
   sectionKey: SectionKey;
   slug: string;
   children?: ReactNode;
   hideCTA?: boolean;
   cta?: { title: string; body: string };
+  facts?: { k: string; v: string }[];
 }) {
   const section = getSection(sectionKey);
   const item = section.items.find((i) => i.slug === slug)!;
@@ -106,6 +108,21 @@ export default function DetailPage({
                 Explore details
               </a>
             </div>
+
+            {facts?.length ? (
+              <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-5 border-t border-brand-100/70 pt-7">
+                {facts.map((f) => (
+                  <div key={f.k}>
+                    <dt className="font-display text-2xl font-extrabold tracking-tight text-ink-900 sm:text-[1.75rem]">
+                      {f.v}
+                    </dt>
+                    <dd className="mt-0.5 text-xs font-medium uppercase tracking-wider text-ink-500">
+                      {f.k}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
           </div>
         </div>
       </section>

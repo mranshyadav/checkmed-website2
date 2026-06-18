@@ -174,6 +174,11 @@ export const sections: Section[] = [
         slug: "consultation",
         title: "Consultation",
         desc: "Online, in-person & teleconsultation",
+        stats: [
+          { v: "~4 min", k: "to connect" },
+          { v: "24/7", k: "available" },
+          { v: "3 ways", k: "to consult" },
+        ],
         icon: Stethoscope,
         intro:
           "See a doctor your way — a scheduled video appointment, a physical clinic visit, or an instant teleconsult. Whatever the mode, the same secure record and e-prescription follow you.",
@@ -201,6 +206,11 @@ export const sections: Section[] = [
         slug: "lab-tests",
         title: "Lab Tests",
         desc: "Home visit or centre visit",
+        stats: [
+          { v: "NABL", k: "accredited labs" },
+          { v: "Free", k: "home collection" },
+          { v: "~24 hrs", k: "reports" },
+        ],
         icon: Flask,
         intro:
           "Book individual tests or full-body packages and choose how you're sampled — a free home visit or a walk-in at a partner centre. Same accredited labs, same accuracy, with digital doctor-reviewed reports.",
@@ -227,6 +237,11 @@ export const sections: Section[] = [
         slug: "pharmacy",
         title: "Pharmacy",
         desc: "Genuine medicines, delivered",
+        stats: [
+          { v: "100%", k: "genuine meds" },
+          { v: "Doorstep", k: "delivery" },
+          { v: "Auto", k: "refills" },
+        ],
         icon: Pill,
         intro:
           "Get prescribed medicines delivered to your door — genuine, verified and trackable — with automatic refills so ongoing treatment never lapses.",
@@ -249,6 +264,11 @@ export const sections: Section[] = [
         slug: "health-camps",
         title: "Health Check-up Camps",
         desc: "On-site preventive screenings",
+        stats: [
+          { v: "On-site", k: "we set it up" },
+          { v: "Digital", k: "report per head" },
+          { v: "HR", k: "wellbeing insights" },
+        ],
         icon: Calendar,
         intro:
           "Bring preventive care on-site. We run end-to-end health camps for your workforce — vitals, screenings and doctor consults — with a digital report for every employee and aggregate wellbeing insights for HR.",
@@ -271,6 +291,11 @@ export const sections: Section[] = [
         slug: "medical-room",
         title: "Medical Room",
         desc: "A staffed clinic at your workplace",
+        stats: [
+          { v: "On-site", k: "clinic" },
+          { v: "OHC-ready", k: "records" },
+          { v: "Nurse + Dr", k: "staffed" },
+        ],
         icon: Hospital,
         intro:
           "Set up a staffed medical room — an on-site clinic for first aid, daily OPD, vitals and emergencies — so help is steps away for your team, and you stay compliant with Occupational Health Centre (OHC) norms.",
@@ -293,6 +318,11 @@ export const sections: Section[] = [
         slug: "disease-management",
         title: "Disease Management",
         desc: "Programs for chronic conditions",
+        stats: [
+          { v: "1:1", k: "care manager" },
+          { v: "7+", k: "conditions" },
+          { v: "Ongoing", k: "monitoring" },
+        ],
         icon: HeartPulse,
         intro:
           "Structured, ongoing programs for chronic conditions — pairing a dedicated care manager with monitoring, medication support and lifestyle coaching to keep conditions controlled and complications (and hospitalisations) away.",
