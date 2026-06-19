@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { CheckMedWordmark, Menu, Close, ChevronDown, ArrowRight, Spark } from "@/lib/icons";
 import { sections, itemHref, type Item, type SectionKey } from "@/lib/content";
 
+const inGroup = (it: Item, label: string) =>
+  it.groups ? it.groups.includes(label) : it.group === label;
+
 type Leaf = { icon: Item["icon"]; title: string; desc: string; href: string };
 const leafOf = (key: SectionKey, it: Item): Leaf => ({
   icon: it.icon,
@@ -107,7 +110,7 @@ function MegaContent({ sectionKey, fns }: { sectionKey: SectionKey; fns: Fns }) 
             <div key={g.label}>
               <ColHeader icon={g.icon} label={g.label} />
               {section.items
-                .filter((it) => it.group === g.label)
+                .filter((it) => inGroup(it, g.label))
                 .map((it) => (
                   <LeafLink key={it.slug} item={leafOf(sectionKey, it)} fns={fns} />
                 ))}
@@ -364,7 +367,7 @@ export default function Navbar() {
               {mobileSub === s.key ? (
                 <div className="pb-1 pl-3">
                   {(s.groups ?? [{ label: "" }]).map((g, gi) => {
-                    const items = g.label ? s.items.filter((it) => it.group === g.label) : s.items;
+                    const items = g.label ? s.items.filter((it) => inGroup(it, g.label)) : s.items;
                     return (
                       <div key={gi} className="py-1">
                         {g.label ? (

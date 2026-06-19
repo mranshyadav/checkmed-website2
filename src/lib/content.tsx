@@ -33,6 +33,7 @@ export type Item = {
   desc: string;
   icon: Ico;
   group?: string;
+  groups?: string[];
   intro?: string;
   points?: string[];
   // services extras
@@ -168,12 +169,17 @@ export const sections: Section[] = [
     label: "Services",
     base: "/services",
     tagline: "Care your way — consult, test, treat and manage.",
-    layout: "grid",
+    layout: "groups",
+    groups: [
+      { label: "Corporate", icon: Building },
+      { label: "Retail", icon: Users },
+    ],
     items: [
       {
         slug: "consultation",
         title: "Consultation",
         desc: "Online, in-person & teleconsultation",
+        groups: ["Corporate", "Retail"],
         stats: [
           { v: "~4 min", k: "to connect" },
           { v: "24/7", k: "available" },
@@ -206,6 +212,7 @@ export const sections: Section[] = [
         slug: "lab-tests",
         title: "Lab Tests",
         desc: "Home visit or centre visit",
+        groups: ["Corporate", "Retail"],
         stats: [
           { v: "NABL", k: "accredited labs" },
           { v: "Free", k: "home collection" },
@@ -237,6 +244,7 @@ export const sections: Section[] = [
         slug: "pharmacy",
         title: "Pharmacy",
         desc: "Genuine medicines, delivered",
+        groups: ["Corporate", "Retail"],
         stats: [
           { v: "100%", k: "genuine meds" },
           { v: "Doorstep", k: "delivery" },
@@ -264,6 +272,7 @@ export const sections: Section[] = [
         slug: "health-camps",
         title: "Health Check-up Camps",
         desc: "On-site preventive screenings",
+        groups: ["Corporate"],
         stats: [
           { v: "On-site", k: "we set it up" },
           { v: "Digital", k: "report per head" },
@@ -291,6 +300,7 @@ export const sections: Section[] = [
         slug: "medical-room",
         title: "Medical Room",
         desc: "A staffed clinic at your workplace",
+        groups: ["Corporate"],
         stats: [
           { v: "On-site", k: "clinic" },
           { v: "OHC-ready", k: "records" },
@@ -318,6 +328,7 @@ export const sections: Section[] = [
         slug: "disease-management",
         title: "Disease Management",
         desc: "Programs for chronic conditions",
+        groups: ["Corporate", "Retail"],
         stats: [
           { v: "1:1", k: "care manager" },
           { v: "7+", k: "conditions" },
